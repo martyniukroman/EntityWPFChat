@@ -1,0 +1,232 @@
+﻿<Controls:MetroWindow x:Class="EntityWPFChat.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:cpvls="clr-namespace:ShineColorPicker.Controls;assembly=ShineColorPicker"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:local="clr-namespace:EntityWPFChat"
+        mc:Ignorable="d"
+        Title="Wpf-chat" 
+                      Name="FatherWin"
+                      
+                      MinHeight="500" MinWidth="850"
+                      Height="600" Width="1000" SizeChanged="MetroWindow_SizeChanged"
+                      StateChanged="MetroWindow_StateChanged"
+                      
+                      >
+
+    <Window.Resources>
+        <local:AligmentConverter x:Key="con"></local:AligmentConverter>
+        <!--<ResourceDictionary Source="Themes/Generic.xaml" />-->
+    </Window.Resources>
+
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="180"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="150"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <Menu FontSize="13" Grid.ColumnSpan="6" BorderBrush="Snow" BorderThickness="1">
+            <MenuItem Name="MenuRegistr" Click="MenuRegistr_Click" Header="Sign in"></MenuItem>
+            <MenuItem Name="MenuRemove" Click="MenuRemove_Click" Header="Delete account"></MenuItem>
+            <MenuItem Name="MenuSettings" Click="MenuSettings_Click" Header="Settings"></MenuItem>
+        </Menu>
+
+
+
+        <!--<Label BorderBrush="Snow" BorderThickness="1" Grid.Row="1">Select User:</Label>-->
+        <DataGrid HorizontalScrollBarVisibility="Disabled" IsReadOnly="True" HeadersVisibility="None" Name="UsersFrom" Grid.Row="1" Grid.RowSpan="2" ItemsSource="{Binding Path=People}" BorderBrush="Snow" BorderThickness="1"></DataGrid>
+        <!--<DataGrid Name="UsersTo" Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" ItemsSource="{Binding Path=People}" BorderBrush="Snow" BorderThickness="1"></DataGrid>-->
+
+        <ListView Name="ListViewMessages" Grid.RowSpan="3" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="5" BorderBrush="Snow" BorderThickness="1">
+
+            <!--<ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel HorizontalAlignment="Center"></WrapPanel>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>-->
+
+
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border Tag="{Binding ElementName=UsersFrom,Path=SelectedItem}" Grid.RowSpan="5" Grid.ColumnSpan="5" MaxWidth="{Binding ElementName=FatherWin, Path=Tag}" MinHeight="40" Background="#2e4e84" VerticalAlignment="Center" CornerRadius="20">
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Setter Property="HorizontalAlignment">
+                                    <Setter.Value>
+                                        <MultiBinding Converter="{StaticResource con}">
+                                            <Binding Path="Sender"></Binding>
+                                            <Binding Path="Tag" RelativeSource="{RelativeSource Self}"></Binding>
+                                        </MultiBinding>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </Border.Style>
+                        <StackPanel>
+                            <Image MaxHeight="500" Margin="15,15,15,-10" Source="{Binding Path=PictureLink}" ></Image>
+                            <TextBlock Text="{Binding Path=MessageContent}" Foreground="Snow" Name="TextBlockContent" FontSize="15" Margin="15,10,15,0" HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap"></TextBlock>
+                            <TextBlock Text="{Binding Path=Sender.Name}" Foreground="#e5e5e5" Name="TextBlockName" FontSize="10" Margin="20,0,20,0" HorizontalAlignment="Left"></TextBlock>
+                            <TextBlock Text="{Binding Path=dateTime}" Foreground="#e5e5e5" Name="TextBlockDate" FontSize="10" Margin="20,0,20,3" HorizontalAlignment="Right"></TextBlock>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+        </ListView>
+
+        <TextBox Name="TextBoxMain" TextWrapping="Wrap" Grid.Row="4" Grid.ColumnSpan="5" FontSize="15" Controls:TextBoxHelper.WatermarkWrapping="WrapWithOverflow"></TextBox>
+        <Button Grid.Row="4" Grid.Column="5" FontSize="12" Click="Button_Click">Send</Button>
+        <Button Name="ButtonUpdate" Click="ButtonUpdate_Click" FontSize="40" Padding="0,-15,0,-6" Grid.Row="4" Grid.Column="3" >⟳</Button>
+        <Button Name="ButtonPhoto" Click="ButtonPhoto_Click" FontSize="25" Padding="0,0,0,0" Grid.Row="4" Grid.Column="4" >🔗</Button>
+
+
+        <GridSplitter Grid.Row="3" Grid.ColumnSpan="6" Height="2"
+        HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+
+        <!--<Border Grid.RowSpan="5" Grid.ColumnSpan="5" Width="200" MinHeight="40" Background="#2e4e84" VerticalAlignment="Center" CornerRadius="20">
+            <StackPanel>
+                <Image Margin="15,15,15,-5" Height="100" Source="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQapV7x1nHopea5R_XYFHd5_dc6bBSAbjI0xTef8dko0CzwQMDc" ></Image>
+                <TextBlock Foreground="#c1d9ff" Name="TextBlockContent" FontSize="15" Margin="10,5,10,5" HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap">MEssage</TextBlock>
+                <TextBlock Foreground="#93bcff" Name="TextBlockName" FontSize="10" Margin="15,0,15,0" HorizontalAlignment="Left">SenderLongLongNameSenderLongLongNameSender</TextBlock>
+                <TextBlock Foreground="#93bcff" Name="TextBlockDate" FontSize="10" Margin="15,0,15,3" HorizontalAlignment="Right">01/10/2010</TextBlock>
+            </StackPanel>
+        </Border>-->
+
+        <!--Width="{Binding ElementName=FatherWin, Path=Width}" Height="{Binding ElementName=FatherWin, Path=Height}"-->
+
+        <Controls:Flyout Name="FlyOutStyle" Header="Settings" Grid.Row="0" Grid.Column="0" Position="Top" Grid.RowSpan="5" Grid.ColumnSpan="6">
+            <Grid>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Label HorizontalAlignment="Right" Margin="5" VerticalAlignment="Center" FontSize="20">Accent color:</Label>
+                <ComboBox Margin="5" Grid.Row="0" Grid.Column="1" Name="DropDownAccents" SelectedIndex="11" SelectionChanged="DropDownAccents_SelectionChanged" />
+
+                <Label HorizontalAlignment="Right" Grid.Row="1" Margin="5" VerticalAlignment="Center" FontSize="20">Color scheme:</Label>
+                <Controls:ToggleSwitch Name="ThemeSwitch" Click="ToggleSwitch_Click" Margin="5" Grid.Row="1" Grid.Column="1" OnLabel="White" OffLabel="Dark" />
+
+            </Grid>
+        </Controls:Flyout>
+        <Controls:Flyout Name="FlyOutRemove" Header="Delete account" Grid.Row="0" Grid.Column="0" Position="Left" Width="220" Grid.RowSpan="5" Grid.ColumnSpan="3">
+            <StackPanel>
+
+                <Label FontSize="9" Margin="0,-25,60,5" HorizontalAlignment="Right">and cleanup usage data</Label>
+                <Label Name="LabelOnDeleteUserName" FontSize="20" Content="UserName" HorizontalAlignment="Center"></Label>
+
+                <TextBox Name="TextBoxConfirmPass" Margin="10,0,10,5" Controls:TextBoxHelper.Watermark="Confirm password" Controls:TextBoxHelper.ClearTextButton="True"></TextBox>
+                <Button Height="30" Content="Remove" Name="ButtonUserRemove" Click="ButtonUserRemove_Click" Margin="10,5,10,5" />
+
+            </StackPanel>
+        </Controls:Flyout>
+        <Controls:Flyout CloseButtonVisibility="Hidden" HorizontalAlignment="Stretch" Name="FlyOutRegistr" Header="Register or Sign in" Grid.Row="0" Grid.Column="0" Width="1000"  Position="Left" Grid.RowSpan="5" Grid.ColumnSpan="9">
+
+            <Grid>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="200"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="250"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Margin="0,-25,57,0" VerticalAlignment="Top" Grid.Row="0" Grid.Column="1" FontSize="15" HorizontalAlignment="Right" Height="30" Width="399">You will be automatically register if you don't have account</Label>
+                <Label VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="100">WPF</Label>
+                <Label Margin="0,-85,-86,0" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Row="1" FontSize="100">chat</Label>
+
+                <Image Margin="50" Grid.Column="1" Grid.RowSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" Source="https://vignette.wikia.nocookie.net/surrealmemes/images/1/17/Flawless_picardia_by_epycwyn-dbkbyfq.png/revision/latest?cb=20180418235839"></Image>
+
+                <StackPanel Grid.Row="2">
+ 
+                    <Label FontSize="17" HorizontalAlignment="Center">Enter wishing initials</Label>
+
+                    <TextBox TextChanged="TextBoxNameRegistr_TextChanged" Name="TextBoxNameRegistr" Validation.Error="TextBox_Error" Margin="10,5,10,5" Controls:TextBoxHelper.Watermark="Name" Controls:TextBoxHelper.ClearTextButton="True">
+                        <TextBox.Text>
+                            <Binding Path="Name" NotifyOnValidationError="True">
+                                <Binding.ValidationRules>
+                                    <DataErrorValidationRule />
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                    <TextBox TextChanged="TextBoxNameRegistrPswd_TextChanged" Name="TextBoxNameRegistrPswd" Validation.Error="TextBox_Error" Margin="10,5,10,5" Controls:TextBoxHelper.Watermark="Password" Controls:TextBoxHelper.ClearTextButton="True">
+                        <TextBox.Text>
+                            <Binding Path="Password" NotifyOnValidationError="True">
+                                <Binding.ValidationRules>
+                                    <DataErrorValidationRule />
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+
+                    <Button Height="30" Content="Sign in" Name="ButtonUserAdd" Click="ButtonUserAdd_Click" Margin="10,5,10,5" />
+
+                </StackPanel>
+
+            </Grid>
+
+
+        </Controls:Flyout>
+        <Controls:Flyout CloseButtonVisibility="Collapsed" Name="FlyOutAttach" Header="Attach Photo" Grid.Row="0" Grid.Column="0" Position="Bottom" Height="100" Grid.RowSpan="5" Grid.ColumnSpan="6">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="160"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="150"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.RowSpan="2" FontSize="30" HorizontalAlignment="Center" Foreground="Gray" VerticalAlignment="Center">Preview</Label>
+                <Image Margin="5" Grid.RowSpan="2" Name="ImageAttachPreview"></Image>
+                <TextBox Name="TextBoxLinkToImage" TextChanged="TextBoxLinkToImage_TextChanged" Margin="10" FontSize="15" Grid.ColumnSpan="3" Grid.Column="1" Controls:TextBoxHelper.Watermark="Past link here" Controls:TextBoxHelper.ClearTextButton="True"></TextBox>
+                <Label Margin="5,-15,0,0" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="1" FontSize="12" HorizontalAlignment="Left" VerticalAlignment="Top">*If preview does not apper, link is invalid</Label>
+                <Button Name="ButtonAttach" Click="ButtonAttach_Click" Margin="5" Grid.Column="4" Grid.Row="0">Attach</Button>
+                <Button Name="ButtonAttachCencel" Click="ButtonAttachCencel_Click" Margin="5" Grid.Column="4" Grid.Row="1">Cencel</Button>
+                <Label Grid.Row="2" FontSize="15" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">Select background color: </Label>
+                <cpvls:ColorPicker Width="140" Height="35" Grid.Column="3" Grid.Row="1"></cpvls:ColorPicker>
+                
+                 
+                
+            </Grid>
+        </Controls:Flyout>
+
+        <Controls:ProgressRing Name="ProgressRingLoading" IsActive="False" Grid.RowSpan="6" Grid.ColumnSpan="6"/>
+
+    </Grid>
+</Controls:MetroWindow>
