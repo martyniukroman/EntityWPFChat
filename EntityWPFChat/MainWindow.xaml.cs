@@ -83,7 +83,8 @@ namespace EntityWPFChat
 
                 try {
                     UsersFrom.Columns[2].Visibility = Visibility.Collapsed;
-                   // UsersFromDelete.Columns[2].Visibility = Visibility.Collapsed;
+                    UsersFrom.Columns[0].Visibility = Visibility.Collapsed;
+                    // UsersFromDelete.Columns[2].Visibility = Visibility.Collapsed;
                 }
                 catch (Exception ex) {
                     
