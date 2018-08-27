@@ -143,7 +143,6 @@ namespace EntityWPFChat
             }
                 message.MessageContent = tmp;
 
-
             db.Messages.Add(message);
             db.SaveChanges();
 
