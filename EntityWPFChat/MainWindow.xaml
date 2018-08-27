@@ -52,7 +52,9 @@
         <DataGrid Padding="5" HorizontalScrollBarVisibility="Disabled" IsReadOnly="True" HeadersVisibility="None" Name="UsersFrom" Grid.Row="1" Grid.RowSpan="2" ItemsSource="{Binding Path=People}" BorderBrush="Snow" BorderThickness="1"></DataGrid>
         <!--<DataGrid Name="UsersTo" Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" ItemsSource="{Binding Path=People}" BorderBrush="Snow" BorderThickness="1"></DataGrid>-->
 
-        <ListView Name="ListViewMessages" Grid.RowSpan="3" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="5" BorderBrush="Snow" BorderThickness="1">
+        <ScrollViewer Name="Scroll" Grid.RowSpan="3" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="5" BorderBrush="Snow" BorderThickness="1">
+
+            <ListView Name="ListViewMessages" BorderBrush="Snow" BorderThickness="1">
 
             <!--<ListView.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -78,7 +80,7 @@
                             </Style>
                         </Border.Style>
                         <StackPanel>
-                            <Image MaxHeight="500" Margin="15,15,15,-10" Source="{Binding Path=PictureLink}" ></Image>
+                            <Image MaxWidth="700" MaxHeight="500" Margin="15,15,15,-10" Source="{Binding Path=PictureLink}" ></Image>
                             <TextBlock Text="{Binding Path=MessageContent}" Foreground="Snow" Name="TextBlockContent" FontSize="15" Margin="15,10,15,0" HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap"></TextBlock>
                             <TextBlock Text="{Binding Path=Sender.Name}" Foreground="#e5e5e5" Name="TextBlockName" FontSize="10" Margin="20,0,20,0" HorizontalAlignment="Left"></TextBlock>
                             <TextBlock Text="{Binding Path=dateTime}" Foreground="#e5e5e5" Name="TextBlockDate" FontSize="10" Margin="20,0,20,3" HorizontalAlignment="Right"></TextBlock>
@@ -88,6 +90,7 @@
             </ListView.ItemTemplate>
 
         </ListView>
+        </ScrollViewer>
 
         <TextBox Name="TextBoxMain" TextWrapping="Wrap" Grid.Row="4" Grid.ColumnSpan="5" FontSize="15" Controls:TextBoxHelper.WatermarkWrapping="WrapWithOverflow"></TextBox>
         <Button Grid.Row="4" Grid.Column="5" FontSize="12" Click="Button_Click">Send</Button>
@@ -120,27 +123,33 @@
 
             </StackPanel>
         </Controls:Flyout>
-        <Controls:Flyout Name="FlyOutStyle" Header="Settings" Grid.Row="0" Grid.Column="0" Position="Top" Grid.RowSpan="5" Grid.ColumnSpan="6">
+        <Controls:Flyout CloseButtonVisibility="Collapsed" Name="FlyOutAttach" Grid.Row="0" Grid.Column="0" Position="Bottom" Height="100" Grid.RowSpan="5" Grid.ColumnSpan="6">
             <Grid>
-
                 <Grid.RowDefinitions>
                     <RowDefinition/>
+                    <RowDefinition/>
                 </Grid.RowDefinitions>
-
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="160"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="175"/>
+                    <ColumnDefinition Width="160"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="150"/>
                 </Grid.ColumnDefinitions>
 
-                <Label HorizontalAlignment="Right" Margin="5" VerticalAlignment="Center" FontSize="20">Accent color:</Label>
-                <ComboBox Margin="15" Grid.Row="0" Grid.Column="1" Name="DropDownAccents" SelectedIndex="11" SelectionChanged="DropDownAccents_SelectionChanged" />
-
-                <Label HorizontalAlignment="Right" Grid.Column="2" Grid.Row="1" Margin="5" VerticalAlignment="Center" FontSize="20">Color scheme:</Label>
-                <Controls:ToggleSwitch Name="ThemeSwitch" Grid.Column="3" Click="ToggleSwitch_Click" Margin="15" Grid.Row="1" OnLabel="White" OffLabel="Dark" />
-
+                <Label Grid.RowSpan="2" FontSize="30" HorizontalAlignment="Center" Foreground="Gray" VerticalAlignment="Center">Preview</Label>
+                <Image Margin="5" Grid.RowSpan="2" Name="ImageAttachPreview"></Image>
+                <TextBox Name="TextBoxLinkToImage" TextChanged="TextBoxLinkToImage_TextChanged" Margin="5,10,5,10" FontSize="15" Grid.ColumnSpan="4" Grid.Column="1" Controls:TextBoxHelper.Watermark="Past link here" Controls:TextBoxHelper.ClearTextButton="True"></TextBox>
+                <Label Margin="5,-15,0,0" Grid.Row="1" Grid.ColumnSpan="3" Grid.Column="1" FontSize="12" HorizontalAlignment="Left" VerticalAlignment="Top">*If preview does not apper, link is invalid</Label>
+                <Button Name="ButtonAttach" Click="ButtonAttach_Click" Margin="5" Grid.Column="5" Grid.Row="0">Attach</Button>
+                <Button Name="ButtonAttachCencel" Click="ButtonAttachCencel_Click" Margin="5" Grid.Column="5" Grid.Row="1">Cencel</Button>
+                <Label Grid.Row="2" FontSize="15" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center">Select background color: </Label>
+                <Button Name="ButtonRestoreDefColor" Click="ButtonRestoreDefColor_Click" Margin="5" Grid.Column="4" Grid.Row="1">Restore</Button>
+                <cpvls:ColorPicker Color="#2e4e84" Name="ColorPicker" Width="140" Height="35" Grid.Column="3" Grid.Row="1"></cpvls:ColorPicker>
+                
+                 
+                
             </Grid>
         </Controls:Flyout>
         <Controls:Flyout CloseButtonVisibility="Hidden" HorizontalAlignment="Stretch" Name="FlyOutRegistr" Header="Register or Sign in" Grid.Row="0" Grid.Column="0" Width="1000"  Position="Left" Grid.RowSpan="5" Grid.ColumnSpan="9">
@@ -150,7 +159,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
-                    <RowDefinition Height="200"/>
+                    <RowDefinition Height="185"/>
                 </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions>
@@ -195,33 +204,27 @@
 
 
         </Controls:Flyout>
-        <Controls:Flyout CloseButtonVisibility="Collapsed" Name="FlyOutAttach" Grid.Row="0" Grid.Column="0" Position="Bottom" Height="100" Grid.RowSpan="5" Grid.ColumnSpan="6">
+        <Controls:Flyout Name="FlyOutStyle" Header="Settings" Grid.Row="0" Grid.Column="0" Position="Top" Grid.RowSpan="5" Grid.ColumnSpan="6">
             <Grid>
+
                 <Grid.RowDefinitions>
                     <RowDefinition/>
-                    <RowDefinition/>
                 </Grid.RowDefinitions>
+
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="160"/>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="175"/>
-                    <ColumnDefinition Width="160"/>
-                    <ColumnDefinition Width="100"/>
-                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <Label Grid.RowSpan="2" FontSize="30" HorizontalAlignment="Center" Foreground="Gray" VerticalAlignment="Center">Preview</Label>
-                <Image Margin="5" Grid.RowSpan="2" Name="ImageAttachPreview"></Image>
-                <TextBox Name="TextBoxLinkToImage" TextChanged="TextBoxLinkToImage_TextChanged" Margin="5,10,5,10" FontSize="15" Grid.ColumnSpan="4" Grid.Column="1" Controls:TextBoxHelper.Watermark="Past link here" Controls:TextBoxHelper.ClearTextButton="True"></TextBox>
-                <Label Margin="5,-15,0,0" Grid.Row="1" Grid.ColumnSpan="3" Grid.Column="1" FontSize="12" HorizontalAlignment="Left" VerticalAlignment="Top">*If preview does not apper, link is invalid</Label>
-                <Button Name="ButtonAttach" Click="ButtonAttach_Click" Margin="5" Grid.Column="5" Grid.Row="0">Attach</Button>
-                <Button Name="ButtonAttachCencel" Click="ButtonAttachCencel_Click" Margin="5" Grid.Column="5" Grid.Row="1">Cencel</Button>
-                <Label Grid.Row="2" FontSize="15" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center">Select background color: </Label>
-                <Button Name="ButtonRestoreDefColor" Click="ButtonRestoreDefColor_Click" Margin="5" Grid.Column="4" Grid.Row="1">Restore</Button>
-                <cpvls:ColorPicker Color="#2e4e84" Name="ColorPicker" Width="140" Height="35" Grid.Column="3" Grid.Row="1"></cpvls:ColorPicker>
-                
-                 
-                
+                <Label HorizontalAlignment="Right" Margin="5" VerticalAlignment="Center" FontSize="20">Accent color:</Label>
+                <ComboBox Margin="15" Grid.Row="0" Grid.Column="1" Name="DropDownAccents" SelectedIndex="8" SelectionChanged="DropDownAccents_SelectionChanged" />
+
+                <Label HorizontalAlignment="Right" Grid.Column="2" Grid.Row="1" Margin="5" VerticalAlignment="Center" FontSize="20">Color scheme:</Label>
+                <Controls:ToggleSwitch Name="ThemeSwitch" Grid.Column="3" Click="ToggleSwitch_Click" Margin="15" Grid.Row="1" OnLabel="White" OffLabel="Dark" />
+
             </Grid>
         </Controls:Flyout>
 

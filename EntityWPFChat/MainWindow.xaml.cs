@@ -95,16 +95,14 @@ namespace EntityWPFChat
                 this.ShowMessageAsync("Fatal Error", ex.Message);
             }
             finally {
+                Scroll.ScrollToEnd();
                 ProgressRingLoading.IsActive = false;
             }
         }
 
         public MainWindow(){
 
-
             InitializeComponent();
-
-            
 
             UpdateContent();
 
