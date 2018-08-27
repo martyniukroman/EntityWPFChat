@@ -137,6 +137,7 @@ namespace EntityWPFChat
             message.Receiver = UsersFrom.SelectedItem as Person;
             message.dateTime = DateTime.Now;
             message.PictureLink = link;
+            message.Color = ColorPicker.Color.ToString();
 
             if (TextBoxMain.Text.Length <= 0 || TextBoxMain.Text == null) {
                 this.ShowMessageAsync("Error", "You wrote nothing");
@@ -325,6 +326,8 @@ namespace EntityWPFChat
             TextBoxLinkToImage.Clear();
             ImageAttachPreview.Source = null;
             FlyOutAttach.IsOpen = false;
+
+            
         }
 
         private void ButtonAttachCencel_Click(object sender, RoutedEventArgs e) {
@@ -333,7 +336,12 @@ namespace EntityWPFChat
             ImageAttachPreview.Source = null;
             ButtonPhoto.Foreground = new SolidColorBrush(Colors.Gray);
             FlyOutAttach.IsOpen = false;
+
         }
 
+        private void ButtonRestoreDefColor_Click(object sender, RoutedEventArgs e) {
+            ColorPicker.Color = Color.FromRgb(46, 78, 132);
+            TextBoxLinkToImage.Clear();
+        }
     }
 }

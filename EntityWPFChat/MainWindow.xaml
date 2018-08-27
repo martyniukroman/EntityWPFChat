@@ -64,7 +64,7 @@
 
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Border Tag="{Binding ElementName=UsersFrom,Path=SelectedItem}" Grid.RowSpan="5" Grid.ColumnSpan="5" MaxWidth="{Binding ElementName=FatherWin, Path=Tag}" MinHeight="40" Background="#2e4e84" VerticalAlignment="Center" CornerRadius="20">
+                    <Border Tag="{Binding ElementName=UsersFrom,Path=SelectedItem}" Background="{Binding Path=Color}" Grid.RowSpan="5" Grid.ColumnSpan="5" MaxWidth="{Binding ElementName=FatherWin, Path=Tag}" MinHeight="40" VerticalAlignment="Center" CornerRadius="20">
                         <Border.Style>
                             <Style TargetType="Border">
                                 <Setter Property="HorizontalAlignment">
@@ -198,7 +198,7 @@
 
 
         </Controls:Flyout>
-        <Controls:Flyout CloseButtonVisibility="Collapsed" Name="FlyOutAttach" Header="Attach Photo" Grid.Row="0" Grid.Column="0" Position="Bottom" Height="100" Grid.RowSpan="5" Grid.ColumnSpan="6">
+        <Controls:Flyout CloseButtonVisibility="Collapsed" Name="FlyOutAttach" Grid.Row="0" Grid.Column="0" Position="Bottom" Height="100" Grid.RowSpan="5" Grid.ColumnSpan="6">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
@@ -207,19 +207,21 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="160"/>
                     <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="170"/>
+                    <ColumnDefinition Width="175"/>
+                    <ColumnDefinition Width="160"/>
+                    <ColumnDefinition Width="100"/>
                     <ColumnDefinition Width="150"/>
                 </Grid.ColumnDefinitions>
 
                 <Label Grid.RowSpan="2" FontSize="30" HorizontalAlignment="Center" Foreground="Gray" VerticalAlignment="Center">Preview</Label>
                 <Image Margin="5" Grid.RowSpan="2" Name="ImageAttachPreview"></Image>
-                <TextBox Name="TextBoxLinkToImage" TextChanged="TextBoxLinkToImage_TextChanged" Margin="10" FontSize="15" Grid.ColumnSpan="3" Grid.Column="1" Controls:TextBoxHelper.Watermark="Past link here" Controls:TextBoxHelper.ClearTextButton="True"></TextBox>
-                <Label Margin="5,-15,0,0" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="1" FontSize="12" HorizontalAlignment="Left" VerticalAlignment="Top">*If preview does not apper, link is invalid</Label>
-                <Button Name="ButtonAttach" Click="ButtonAttach_Click" Margin="5" Grid.Column="4" Grid.Row="0">Attach</Button>
-                <Button Name="ButtonAttachCencel" Click="ButtonAttachCencel_Click" Margin="5" Grid.Column="4" Grid.Row="1">Cencel</Button>
+                <TextBox Name="TextBoxLinkToImage" TextChanged="TextBoxLinkToImage_TextChanged" Margin="5,10,5,10" FontSize="15" Grid.ColumnSpan="4" Grid.Column="1" Controls:TextBoxHelper.Watermark="Past link here" Controls:TextBoxHelper.ClearTextButton="True"></TextBox>
+                <Label Margin="5,-15,0,0" Grid.Row="1" Grid.ColumnSpan="3" Grid.Column="1" FontSize="12" HorizontalAlignment="Left" VerticalAlignment="Top">*If preview does not apper, link is invalid</Label>
+                <Button Name="ButtonAttach" Click="ButtonAttach_Click" Margin="5" Grid.Column="5" Grid.Row="0">Attach</Button>
+                <Button Name="ButtonAttachCencel" Click="ButtonAttachCencel_Click" Margin="5" Grid.Column="5" Grid.Row="1">Cencel</Button>
                 <Label Grid.Row="2" FontSize="15" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center">Select background color: </Label>
-                <cpvls:ColorPicker Name="ColorPicker" Width="140" Height="35" Grid.Column="3" Grid.Row="1"></cpvls:ColorPicker>
+                <Button Name="ButtonRestoreDefColor" Click="ButtonRestoreDefColor_Click" Margin="5" Grid.Column="4" Grid.Row="1">Restore</Button>
+                <cpvls:ColorPicker Color="#2e4e84" Name="ColorPicker" Width="140" Height="35" Grid.Column="3" Grid.Row="1"></cpvls:ColorPicker>
                 
                  
                 
