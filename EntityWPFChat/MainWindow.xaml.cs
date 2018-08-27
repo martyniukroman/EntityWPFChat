@@ -150,7 +150,7 @@ namespace EntityWPFChat
 
             TextBoxMain.Clear();
             link = string.Empty;
-            ButtonPhoto.Foreground = new SolidColorBrush(Colors.White);
+            ButtonPhoto.Content = "🔗";
             UpdateContent();
         }
 
@@ -343,6 +343,7 @@ namespace EntityWPFChat
             TextBoxLinkToImage.Clear();
             ImageAttachPreview.Source = null;
             ColorPicker.Color = Color.FromRgb(46, 78, 132);
+            ButtonPhoto.Content = "🔗";
             ButtonPhoto.Foreground = new SolidColorBrush(Colors.Gray);
             FlyOutAttach.IsOpen = false;
 
@@ -353,6 +354,7 @@ namespace EntityWPFChat
             TextBoxLinkToImage.Clear();
             ImageAttachPreview.Source = null;
             ColorPicker.Color = Color.FromRgb(46, 78, 132);
+            ButtonPhoto.Content = "🔗";
             ButtonPhoto.Foreground = new SolidColorBrush(Colors.Gray);
         }
     }
