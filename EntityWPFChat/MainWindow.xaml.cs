@@ -322,11 +322,19 @@ namespace EntityWPFChat
 
         private void ButtonAttach_Click(object sender, RoutedEventArgs e) {
             link = TextBoxLinkToImage.Text;
-            ButtonPhoto.Foreground = new SolidColorBrush(Color.FromRgb(211, 31, 31));
+            ButtonPhoto.Foreground = new SolidColorBrush(ColorPicker.Color);
             TextBoxLinkToImage.Clear();
             ImageAttachPreview.Source = null;
+
+            if (link != string.Empty)
+                ButtonPhoto.Content += "*";
+            else
+                ButtonPhoto.Content = "🔗";
+
             FlyOutAttach.IsOpen = false;
 
+
+            
             
         }
 
@@ -334,14 +342,18 @@ namespace EntityWPFChat
             link = null;
             TextBoxLinkToImage.Clear();
             ImageAttachPreview.Source = null;
+            ColorPicker.Color = Color.FromRgb(46, 78, 132);
             ButtonPhoto.Foreground = new SolidColorBrush(Colors.Gray);
             FlyOutAttach.IsOpen = false;
 
         }
 
         private void ButtonRestoreDefColor_Click(object sender, RoutedEventArgs e) {
-            ColorPicker.Color = Color.FromRgb(46, 78, 132);
+            link = null;
             TextBoxLinkToImage.Clear();
+            ImageAttachPreview.Source = null;
+            ColorPicker.Color = Color.FromRgb(46, 78, 132);
+            ButtonPhoto.Foreground = new SolidColorBrush(Colors.Gray);
         }
     }
 }

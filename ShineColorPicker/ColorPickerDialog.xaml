@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     x:Class="ShineColorPicker.ColorPickerDialog"
         mc:Ignorable="d"
-        Title="Pick a Color" Height="470" Width="412" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" ShowInTaskbar="False" Topmost="True">
+        Title="Pick a Color" Height="370" Width="412" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" ShowInTaskbar="False" Topmost="True">
     <Window.Resources>
         <ResourceDictionary Source="/ShineColorPicker;component/Themes/Generic.xaml" />
     </Window.Resources>
@@ -21,7 +21,6 @@
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" >
                 <StackPanel Orientation="Vertical" Width="30">
-                    <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="LightSteelBlue" />
                     <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="BlueViolet" />
                     <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="MediumPurple" />
                     <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="MediumSlateBlue" />
@@ -31,7 +30,6 @@
                     <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="DarkSlateBlue" />
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Width="30">
-                    <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="Thistle" />
                     <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="Plum" />
                     <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="Violet" />
                     <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="Orchid" />
@@ -44,7 +42,6 @@
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Width="30" >
                     <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="LightCoral" />
-                    <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="LightSalmon" />
                     <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="Salmon" />
                     <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="DarkSalmon" />
                     <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="RosyBrown" />
@@ -56,25 +53,17 @@
                     <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="Brown" />
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Width="30">
-                    <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="Pink" />
-                    <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="LightPink" />
                     <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="HotPink" />
                     <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="MediumVioletRed" />
                     <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="PaleVioletRed" />
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Width="30">
-                    <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="Moccasin" />
-                    <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="PeachPuff" />
-                    <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="NavajoWhite" />
                     <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="DarkOrange" />
                     <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="Orange" />
                     <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="Coral" />
                     <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="Tomato" />
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Width="30">
-                    <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="PaleGoldenrod" />
-                    <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="Khaki" />
-                    <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="Gold" />
                     <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="DarkKhaki" />
                     <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="Goldenrod" />
                     <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="DarkGoldenrod" />
@@ -89,7 +78,6 @@
                     <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="DarkGreen" />
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Width="30">
-                    <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="LightGreen" />
                     <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="MediumAquamarine" />
                     <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="DarkSeaGreen" />
                     <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="LightSeaGreen" />
@@ -101,11 +89,7 @@
                     <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="DarkSlateGray" />
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Width="30">
-                    <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="LightBlue" />
-                    <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="SkyBlue" />
                     <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="LightSkyBlue" />
-                    <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="Turquoise" />
-                    <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="MediumTurquoise" />
                     <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="DarkTurquoise" />
                     <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="DodgerBlue" />
                     <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="CornflowerBlue" />
@@ -115,15 +99,9 @@
                     <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="Navy" />
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Width="30">
-                    <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="PaleTurquoise" />
-                    <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="PowderBlue" />
                     <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="DeepSkyBlue" />
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Width="30">
-                    <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="AntiqueWhite" />
-                    <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="BlanchedAlmond" />
-                    <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="Bisque" />
-                    <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="Wheat" />
                     <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="Tan" />
                     <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="BurlyWood" />
                     <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="SandyBrown" />
@@ -133,8 +111,6 @@
                     <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="SaddleBrown" />
                 </StackPanel>
                 <StackPanel Orientation="Vertical" Width="30">
-                    <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="Gainsboro" />
-                    <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="LightGray" />
                     <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="Silver" />
                     <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="DarkGray" />
                     <Button Height="20" Margin="1" Click="ColorButton_Click" Style="{StaticResource btnBorderOnly}" Background="LightSlateGray" />

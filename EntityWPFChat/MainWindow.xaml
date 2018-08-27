@@ -27,8 +27,8 @@
             <ColumnDefinition Width="180"/>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="50"/>
-            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="55"/>
+            <ColumnDefinition Width="55"/>
             <ColumnDefinition Width="150"/>
         </Grid.ColumnDefinitions>
 
@@ -109,13 +109,21 @@
 
         <!--Width="{Binding ElementName=FatherWin, Path=Width}" Height="{Binding ElementName=FatherWin, Path=Height}"-->
 
+        <Controls:Flyout Name="FlyOutRemove" Header="Delete account" Grid.Row="0" Grid.Column="0" Position="Left" Width="220" Grid.RowSpan="5" Grid.ColumnSpan="3">
+            <StackPanel>
+
+                <Label FontSize="9" Margin="0,-25,60,5" HorizontalAlignment="Right">and cleanup usage data</Label>
+                <Label Name="LabelOnDeleteUserName" FontSize="20" Content="UserName" HorizontalAlignment="Center"></Label>
+
+                <TextBox Name="TextBoxConfirmPass" Margin="10,0,10,5" Controls:TextBoxHelper.Watermark="Confirm password" Controls:TextBoxHelper.ClearTextButton="True"></TextBox>
+                <Button Height="30" Content="Remove" Name="ButtonUserRemove" Click="ButtonUserRemove_Click" Margin="10,5,10,5" />
+
+            </StackPanel>
+        </Controls:Flyout>
         <Controls:Flyout Name="FlyOutStyle" Header="Settings" Grid.Row="0" Grid.Column="0" Position="Top" Grid.RowSpan="5" Grid.ColumnSpan="6">
             <Grid>
 
                 <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
@@ -128,23 +136,12 @@
                 </Grid.ColumnDefinitions>
 
                 <Label HorizontalAlignment="Right" Margin="5" VerticalAlignment="Center" FontSize="20">Accent color:</Label>
-                <ComboBox Margin="5" Grid.Row="0" Grid.Column="1" Name="DropDownAccents" SelectedIndex="11" SelectionChanged="DropDownAccents_SelectionChanged" />
+                <ComboBox Margin="15" Grid.Row="0" Grid.Column="1" Name="DropDownAccents" SelectedIndex="11" SelectionChanged="DropDownAccents_SelectionChanged" />
 
-                <Label HorizontalAlignment="Right" Grid.Row="1" Margin="5" VerticalAlignment="Center" FontSize="20">Color scheme:</Label>
-                <Controls:ToggleSwitch Name="ThemeSwitch" Click="ToggleSwitch_Click" Margin="5" Grid.Row="1" Grid.Column="1" OnLabel="White" OffLabel="Dark" />
+                <Label HorizontalAlignment="Right" Grid.Column="2" Grid.Row="1" Margin="5" VerticalAlignment="Center" FontSize="20">Color scheme:</Label>
+                <Controls:ToggleSwitch Name="ThemeSwitch" Grid.Column="3" Click="ToggleSwitch_Click" Margin="15" Grid.Row="1" OnLabel="White" OffLabel="Dark" />
 
             </Grid>
-        </Controls:Flyout>
-        <Controls:Flyout Name="FlyOutRemove" Header="Delete account" Grid.Row="0" Grid.Column="0" Position="Left" Width="220" Grid.RowSpan="5" Grid.ColumnSpan="3">
-            <StackPanel>
-
-                <Label FontSize="9" Margin="0,-25,60,5" HorizontalAlignment="Right">and cleanup usage data</Label>
-                <Label Name="LabelOnDeleteUserName" FontSize="20" Content="UserName" HorizontalAlignment="Center"></Label>
-
-                <TextBox Name="TextBoxConfirmPass" Margin="10,0,10,5" Controls:TextBoxHelper.Watermark="Confirm password" Controls:TextBoxHelper.ClearTextButton="True"></TextBox>
-                <Button Height="30" Content="Remove" Name="ButtonUserRemove" Click="ButtonUserRemove_Click" Margin="10,5,10,5" />
-
-            </StackPanel>
         </Controls:Flyout>
         <Controls:Flyout CloseButtonVisibility="Hidden" HorizontalAlignment="Stretch" Name="FlyOutRegistr" Header="Register or Sign in" Grid.Row="0" Grid.Column="0" Width="1000"  Position="Left" Grid.RowSpan="5" Grid.ColumnSpan="9">
 
