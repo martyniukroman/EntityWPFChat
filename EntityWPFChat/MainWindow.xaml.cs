@@ -93,7 +93,7 @@ namespace EntityWPFChat
 
             }
             catch (Exception ex) {
-                this.ShowMessageAsync("Fatal Error", ex.Message);
+               
             }
             finally {
                 Scroll.ScrollToEnd();
@@ -374,9 +374,6 @@ namespace EntityWPFChat
                 ButtonPhoto.Content = "🔗";
 
             FlyOutAttach.IsOpen = false;
-
-
-            
             
         }
 
@@ -406,6 +403,7 @@ namespace EntityWPFChat
 
         private void ButtonDelete_Click(object sender, RoutedEventArgs e) {
             db.Messages.Remove(ListViewMessages.SelectedItem as Message);
+            ButtonDelete.Visibility = Visibility.Collapsed;
             db.SaveChanges();
             UpdateContent();
         }
