@@ -413,6 +413,7 @@ namespace EntityWPFChat
             CurrentLoginedUser.MessageCount--;
             UpdateContent();
             db.SaveChanges();
+            UpdateContent();
         }
 
         private void ListViewMessages_SelectionChanged(object sender, SelectionChangedEventArgs e) {
