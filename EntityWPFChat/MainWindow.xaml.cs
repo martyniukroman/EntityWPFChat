@@ -215,17 +215,17 @@ namespace EntityWPFChat
         private void ButtonUserAdd_Click(object sender, RoutedEventArgs e) {
 
             try {
-                if (TextBoxNameRegistr.Text == string.Empty || TextBoxNameRegistrPswd.Text == string.Empty) {
+                if (TextBoxNameRegistr.Text == string.Empty || TextBoxNameRegistrPswd.Password == string.Empty) {
                     throw new Exception("Empty Fields");
                 }
                 foreach (Person item in UsersFrom.Items) {
-                    if (item.Name == TextBoxNameRegistr.Text && TextBoxNameRegistrPswd.Text != item.Password) {
-                        throw new Exception("This name is already taken");
+                    if (item.Name == TextBoxNameRegistr.Text && TextBoxNameRegistrPswd.Password != item.Password) {
+                        throw new Exception("This name is already taken or password is invalid");
                     }
                 }
 
                 foreach (Person item in UsersFrom.Items) {
-                    if (TextBoxNameRegistr.Text == item.Name && TextBoxNameRegistrPswd.Text == item.Password) {
+                    if (TextBoxNameRegistr.Text == item.Name && TextBoxNameRegistrPswd.Password == item.Password) {
                         CurrentLoginedUser = item;
                         UpdateContent();
                         TextBoxNameRegistr.Clear();
@@ -240,7 +240,7 @@ namespace EntityWPFChat
                     Person tmp = new Person();
 
                     tmp.Name = TextBoxNameRegistr.Text;
-                    tmp.Password = TextBoxNameRegistrPswd.Text;
+                    tmp.Password = TextBoxNameRegistrPswd.Password;
                     CurrentLoginedUser = tmp;
                     db.People.Add(tmp);
                     db.SaveChanges();
@@ -277,7 +277,7 @@ namespace EntityWPFChat
 
                 UpdateContent();
 
-                if (CurrentLoginedUser.Password == TextBoxConfirmPass.Text) {
+                if (CurrentLoginedUser.Password == TextBoxConfirmPass.Password) {
 
                     foreach (Message item in db.Messages) { // ex
                    //         MessageBox.Show(item.Sender.Name, CurrentLoginedUser.Name);

@@ -132,7 +132,7 @@
                 <Label FontSize="9" Margin="0,-25,60,5" HorizontalAlignment="Right">and cleanup usage data</Label>
                 <Label Name="LabelOnDeleteUserName" FontSize="20" Content="UserName" HorizontalAlignment="Center"></Label>
 
-                <TextBox Name="TextBoxConfirmPass" Margin="10,0,10,5" Controls:TextBoxHelper.Watermark="Confirm password" Controls:TextBoxHelper.ClearTextButton="True"></TextBox>
+                <PasswordBox Name="TextBoxConfirmPass" Margin="10,0,10,5" Controls:TextBoxHelper.Watermark="Confirm password" Controls:TextBoxHelper.ClearTextButton="True"></PasswordBox>
                 <Button Height="30" Content="Remove" Name="ButtonUserRemove" Click="ButtonUserRemove_Click" Margin="10,5,10,5" />
 
             </StackPanel>
@@ -200,15 +200,8 @@
                             </Binding>
                         </TextBox.Text>
                     </TextBox>
-                    <TextBox TextChanged="TextBoxNameRegistrPswd_TextChanged" Name="TextBoxNameRegistrPswd" Validation.Error="TextBox_Error" Margin="10,5,10,5" Controls:TextBoxHelper.Watermark="Password" Controls:TextBoxHelper.ClearTextButton="True">
-                        <TextBox.Text>
-                            <Binding Path="Password" NotifyOnValidationError="True">
-                                <Binding.ValidationRules>
-                                    <DataErrorValidationRule />
-                                </Binding.ValidationRules>
-                            </Binding>
-                        </TextBox.Text>
-                    </TextBox>
+                    <PasswordBox Name="TextBoxNameRegistrPswd" Validation.Error="TextBox_Error" Margin="10,5,10,5" Controls:TextBoxHelper.Watermark="Password" Controls:TextBoxHelper.ClearTextButton="True">
+                    </PasswordBox>
 
                     <Button Height="30" Content="Sign in" Name="ButtonUserAdd" Click="ButtonUserAdd_Click" Margin="10,5,10,5" />
 
