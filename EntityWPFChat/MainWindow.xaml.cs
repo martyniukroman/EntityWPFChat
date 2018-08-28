@@ -326,6 +326,7 @@ namespace EntityWPFChat
         }
 
         private void TextBoxNameRegistrPswd_TextChanged(object sender, TextChangedEventArgs e) {
+
             if (System.Windows.Controls.Validation.GetHasError(TextBoxNameRegistrPswd))
                 Valid = false;
             else
@@ -401,6 +402,23 @@ namespace EntityWPFChat
 
         private void FlyOutStyle_MouseLeave(object sender, MouseEventArgs e) {
             (sender as Flyout).IsOpen = false;
+        }
+
+        private void ButtonDelete_Click(object sender, RoutedEventArgs e) {
+            db.Messages.Remove(ListViewMessages.SelectedItem as Message);
+            db.SaveChanges();
+            UpdateContent();
+        }
+
+        private void ListViewMessages_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+
+            if ((ListViewMessages.SelectedItem as Message).Sender.Name == CurrentLoginedUser.Name) {
+                ButtonDelete.Visibility = Visibility.Visible;
+            }
+            else {
+                ButtonDelete.Visibility = Visibility.Collapsed;
+            }
+
         }
     }
 }

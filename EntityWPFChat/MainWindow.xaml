@@ -26,7 +26,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="180"/>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Name="GridDelete" Width="55"/>
             <ColumnDefinition Width="55"/>
             <ColumnDefinition Width="55"/>
             <ColumnDefinition Width="150"/>
@@ -40,6 +40,7 @@
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
 
+
         <Menu FontSize="13" Grid.ColumnSpan="6" BorderBrush="Snow" BorderThickness="1">
             <MenuItem Name="MenuRegistr" Click="MenuRegistr_Click" Header="Sign in"></MenuItem>
             <MenuItem Name="MenuRemove" Click="MenuRemove_Click" Header="Delete account"></MenuItem>
@@ -49,14 +50,14 @@
 
 
         <!--<Label BorderBrush="Snow" BorderThickness="1" Grid.Row="1">Select User:</Label>-->
-        <DataGrid Padding="5" HorizontalScrollBarVisibility="Disabled" IsReadOnly="True" HeadersVisibility="None" Name="UsersFrom" Grid.Row="1" Grid.RowSpan="2" ItemsSource="{Binding Path=People}" BorderBrush="Snow" BorderThickness="1"></DataGrid>
+        <DataGrid Background="Transparent" Padding="5" HorizontalScrollBarVisibility="Disabled" IsReadOnly="True" HeadersVisibility="None" Name="UsersFrom" Grid.Row="1" Grid.RowSpan="2" ItemsSource="{Binding Path=People}" BorderBrush="Snow" BorderThickness="1"></DataGrid>
         <!--<DataGrid Name="UsersTo" Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" ItemsSource="{Binding Path=People}" BorderBrush="Snow" BorderThickness="1"></DataGrid>-->
 
-        <ScrollViewer Name="Scroll" Grid.RowSpan="3" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="5" BorderBrush="Snow" BorderThickness="1">
+        <ScrollViewer Background="Transparent" Name="Scroll" Grid.RowSpan="3" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="5" BorderBrush="Snow" BorderThickness="1">
 
-            <ListView Name="ListViewMessages" BorderBrush="Snow" BorderThickness="1">
+            <ListView SelectionChanged="ListViewMessages_SelectionChanged" Background="Transparent" Name="ListViewMessages" BorderBrush="Snow" BorderThickness="1" >
 
-            <!--<ListView.ItemsPanel>
+                <!--<ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel HorizontalAlignment="Center"></WrapPanel>
                 </ItemsPanelTemplate>
@@ -64,38 +65,41 @@
 
 
 
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Border Tag="{Binding ElementName=UsersFrom,Path=SelectedItem}" Background="{Binding Path=Color}" Grid.RowSpan="5" Grid.ColumnSpan="5" MaxWidth="{Binding ElementName=FatherWin, Path=Tag}" MinHeight="40" VerticalAlignment="Center" CornerRadius="20">
-                        <Border.Style>
-                            <Style TargetType="Border">
-                                <Setter Property="HorizontalAlignment">
-                                    <Setter.Value>
-                                        <MultiBinding Converter="{StaticResource con}">
-                                            <Binding Path="Sender"></Binding>
-                                            <Binding Path="Tag" RelativeSource="{RelativeSource Self}"></Binding>
-                                        </MultiBinding>
-                                    </Setter.Value>
-                                </Setter>
-                            </Style>
-                        </Border.Style>
-                        <StackPanel>
-                            <Image MaxWidth="900" MaxHeight="500" Margin="15,15,15,-10" Source="{Binding Path=PictureLink}" ></Image>
-                            <TextBlock Text="{Binding Path=MessageContent}" Foreground="Snow" Name="TextBlockContent" FontSize="15" Margin="15,10,15,0" HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap"></TextBlock>
-                            <TextBlock Text="{Binding Path=Sender.Name}" Foreground="#e5e5e5" Name="TextBlockName" FontSize="10" Margin="20,0,20,0" HorizontalAlignment="Left"></TextBlock>
-                            <TextBlock Text="{Binding Path=dateTime}" Foreground="#e5e5e5" Name="TextBlockDate" FontSize="10" Margin="20,0,20,3" HorizontalAlignment="Right"></TextBlock>
-                        </StackPanel>
-                    </Border>
-                </DataTemplate>
-            </ListView.ItemTemplate>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Margin="1" Tag="{Binding ElementName=UsersFrom,Path=SelectedItem}" Background="{Binding Path=Color}" Grid.RowSpan="5" Grid.ColumnSpan="5" MaxWidth="{Binding ElementName=FatherWin, Path=Tag}" MinHeight="40" VerticalAlignment="Center" CornerRadius="20">
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Setter Property="HorizontalAlignment">
+                                        <Setter.Value>
+                                            <MultiBinding Converter="{StaticResource con}">
+                                                <Binding Path="Sender"></Binding>
+                                                <Binding Path="Tag" RelativeSource="{RelativeSource Self}"></Binding>
+                                            </MultiBinding>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </Border.Style>
+                            <StackPanel>
+                                <Image MaxWidth="900" MaxHeight="500" Margin="15,15,15,-10" Source="{Binding Path=PictureLink}" ></Image>
+                                <TextBlock Text="{Binding Path=MessageContent}" Foreground="Snow" Name="TextBlockContent" FontSize="15" Margin="15,10,15,0" HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap"></TextBlock>
+                                <TextBlock Text="{Binding Path=Sender.Name}" Foreground="#e5e5e5" Name="TextBlockName" FontSize="10" Margin="20,0,20,0" HorizontalAlignment="Left"></TextBlock>
+                                <TextBlock Text="{Binding Path=dateTime}" Foreground="#e5e5e5" Name="TextBlockDate" FontSize="10" Margin="20,0,20,3" HorizontalAlignment="Right"></TextBlock>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
 
-        </ListView>
+            </ListView>
         </ScrollViewer>
+        
+        <!--<Image Margin="50" Grid.RowSpan="10" Grid.ColumnSpan="10" Name="ImageBackgroud" Source="https://vignette.wikia.nocookie.net/surrealmemes/images/1/17/Flawless_picardia_by_epycwyn-dbkbyfq.png/revision/latest?cb=20180418235839"></Image>-->
 
         <TextBox Name="TextBoxMain" TextWrapping="Wrap" Grid.Row="4" Grid.ColumnSpan="5" FontSize="15" Controls:TextBoxHelper.WatermarkWrapping="WrapWithOverflow"></TextBox>
         <Button Grid.Row="4" Grid.Column="5" FontSize="12" Click="Button_Click">Send</Button>
         <Button Name="ButtonUpdate" Click="ButtonUpdate_Click" FontSize="40" Padding="0,-15,0,-6" Grid.Row="4" Grid.Column="3" >⟳</Button>
         <Button Name="ButtonPhoto" Click="ButtonPhoto_Click" FontSize="25" Padding="0,0,0,0" Grid.Row="4" Grid.Column="4" >🔗</Button>
+        <Button Name="ButtonDelete" Visibility="Collapsed" Click="ButtonDelete_Click" FontSize="25" Padding="0,0,0,0" Grid.Row="4" Grid.Column="2" >🗑</Button>
 
 
         <GridSplitter Grid.Row="3" Grid.ColumnSpan="6" Height="2"
@@ -144,12 +148,12 @@
                 <Label Margin="5,-15,0,0" Grid.Row="1" Grid.ColumnSpan="3" Grid.Column="1" FontSize="12" HorizontalAlignment="Left" VerticalAlignment="Top">*If preview does not apper, link is invalid</Label>
                 <Button Name="ButtonAttach" Click="ButtonAttach_Click" Margin="5" Grid.Column="5" Grid.Row="0">Attach</Button>
                 <Button Name="ButtonAttachCencel" Click="ButtonAttachCencel_Click" Margin="5" Grid.Column="5" Grid.Row="1">Cencel</Button>
-                <Label Grid.Row="2" FontSize="15" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center">Select background color: </Label>
+                <Label Grid.Row="2" FontSize="15" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center">Select background color:</Label>
                 <Button Name="ButtonRestoreDefColor" Click="ButtonRestoreDefColor_Click" Margin="5" Grid.Column="4" Grid.Row="1">Restore</Button>
                 <cpvls:ColorPicker Color="#2e4e84" Name="ColorPicker" Width="140" Height="35" Grid.Column="3" Grid.Row="1"></cpvls:ColorPicker>
-                
-                 
-                
+
+
+
             </Grid>
         </Controls:Flyout>
         <Controls:Flyout CloseButtonVisibility="Hidden"  HorizontalAlignment="Stretch" Name="FlyOutRegistr" Header="Register or Sign in" Grid.Row="0" Grid.Column="0" Width="1000"  Position="Left" Grid.RowSpan="5" Grid.ColumnSpan="9">
@@ -174,7 +178,7 @@
                 <Image Margin="50" Grid.Column="1" Grid.RowSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" Source="https://vignette.wikia.nocookie.net/surrealmemes/images/1/17/Flawless_picardia_by_epycwyn-dbkbyfq.png/revision/latest?cb=20180418235839"></Image>
 
                 <StackPanel Grid.Row="2">
- 
+
                     <Label FontSize="17" HorizontalAlignment="Center">Enter wishing initials</Label>
 
                     <TextBox TextChanged="TextBoxNameRegistr_TextChanged" Name="TextBoxNameRegistr" Validation.Error="TextBox_Error" Margin="10,5,10,5" Controls:TextBoxHelper.Watermark="Name" Controls:TextBoxHelper.ClearTextButton="True">
@@ -212,18 +216,18 @@
                 </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="140"/>
+                    <ColumnDefinition Width="140"/>
+                    <ColumnDefinition Width="140"/>
+                    <ColumnDefinition Width="140"/>
                 </Grid.ColumnDefinitions>
 
-                <Label HorizontalAlignment="Right" Margin="5" VerticalAlignment="Center" FontSize="20">Accent color:</Label>
-                <ComboBox Margin="15" Grid.Row="0" Grid.Column="1" Name="DropDownAccents" SelectedIndex="8" SelectionChanged="DropDownAccents_SelectionChanged" />
+                <Label HorizontalAlignment="Right" Margin="0,15,0,15" Grid.Column="1" VerticalAlignment="Center" FontSize="20" Height="37" Width="124">Accent color:</Label>
+                <ComboBox Margin="15" Grid.Row="0" Grid.Column="2" Name="DropDownAccents" SelectedIndex="8" SelectionChanged="DropDownAccents_SelectionChanged" />
 
-                <Label HorizontalAlignment="Right" Grid.Column="2" Grid.Row="1" Margin="5" VerticalAlignment="Center" FontSize="20">Color scheme:</Label>
-                <Controls:ToggleSwitch Name="ThemeSwitch" Grid.Column="3" Click="ToggleSwitch_Click" Margin="15" Grid.Row="1" OnLabel="White" OffLabel="Dark" />
+                <Label HorizontalAlignment="Right" Grid.Column="3" Margin="0,15,0,15" VerticalAlignment="Center" FontSize="20" Height="37" Width="135">Color scheme:</Label>
+                <Controls:ToggleSwitch Name="ThemeSwitch" Grid.Column="4" Click="ToggleSwitch_Click" Margin="15" OnLabel="White" OffLabel="Dark" />
 
             </Grid>
         </Controls:Flyout>
