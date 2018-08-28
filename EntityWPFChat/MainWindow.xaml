@@ -50,7 +50,17 @@
 
 
         <!--<Label BorderBrush="Snow" BorderThickness="1" Grid.Row="1">Select User:</Label>-->
-        <DataGrid Background="Transparent" Padding="5" HorizontalScrollBarVisibility="Disabled" IsReadOnly="True" HeadersVisibility="None" Name="UsersFrom" Grid.Row="1" Grid.RowSpan="2" ItemsSource="{Binding Path=People}" BorderBrush="Snow" BorderThickness="1"></DataGrid>
+            <DataGrid SelectionChanged="UsersFrom_SelectionChanged" Background="Transparent" Padding="5" HorizontalScrollBarVisibility="Disabled" IsReadOnly="True" HeadersVisibility="None" Name="UsersFrom" Grid.Row="1" Grid.RowSpan="2" ItemsSource="{Binding Path=People}" BorderBrush="Snow" BorderThickness="1">
+
+            <DataGrid.RowDetailsTemplate>
+                <DataTemplate>
+                    <Controls:Badged Name="BadgedMessageCounter" HorizontalAlignment="Center" Width="140" Margin="-13"  Badge="{Binding Path=MessageCount}" BadgePlacementMode="TopRight">
+                        <Label Width="10" HorizontalAlignment="Left" Content="{Binding Path=People.Name}" />
+                    </Controls:Badged>
+                </DataTemplate>
+            </DataGrid.RowDetailsTemplate>
+
+        </DataGrid>
         <!--<DataGrid Name="UsersTo" Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" ItemsSource="{Binding Path=People}" BorderBrush="Snow" BorderThickness="1"></DataGrid>-->
 
         <ScrollViewer Background="Transparent" Name="Scroll" Grid.RowSpan="3" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="5" BorderBrush="Snow" BorderThickness="1">
@@ -208,10 +218,12 @@
 
 
         </Controls:Flyout>
-        <Controls:Flyout Name="FlyOutStyle" MouseLeave="FlyOutStyle_MouseLeave" Header="Settings" Grid.Row="0" Grid.Column="0" Position="Top" Grid.RowSpan="5" Grid.ColumnSpan="6">
+        <Controls:Flyout Height="200" Name="FlyOutStyle" MouseLeave="FlyOutStyle_MouseLeave" Header="Settings" Grid.Row="0" Grid.Column="0" Position="Top" Grid.RowSpan="5" Grid.ColumnSpan="6">
             <Grid>
 
                 <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 

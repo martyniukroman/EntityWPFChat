@@ -85,14 +85,15 @@ namespace EntityWPFChat
                 try {
                     UsersFrom.Columns[2].Visibility = Visibility.Collapsed;
                     UsersFrom.Columns[0].Visibility = Visibility.Collapsed;
+                    UsersFrom.Columns[3].Visibility = Visibility.Collapsed;
                     // UsersFromDelete.Columns[2].Visibility = Visibility.Collapsed;
                 }
-                catch (Exception ex) {
+                catch (Exception) {
                     
                 }
 
             }
-            catch (Exception ex) {
+            catch (Exception) {
                
             }
             finally {
@@ -140,8 +141,7 @@ namespace EntityWPFChat
             message.PictureLink = link;
             message.Color = ColorPicker.Color.ToString();
 
-
-        
+            CurrentLoginedUser.MessageCount++;
 
             //if (TextBoxMain.Text.ToLower().Contains("pink") {
             //  char.IsLetter(TextBoxMain.Text.IndexOf("!") + 1
@@ -217,6 +217,11 @@ namespace EntityWPFChat
             try {
                 if (TextBoxNameRegistr.Text == string.Empty || TextBoxNameRegistrPswd.Text == string.Empty) {
                     throw new Exception("Empty Fields");
+                }
+                foreach (Person item in UsersFrom.Items) {
+                    if (item.Name == TextBoxNameRegistr.Text && TextBoxNameRegistrPswd.Text != item.Password) {
+                        throw new Exception("This name is already taken");
+                    }
                 }
 
                 foreach (Person item in UsersFrom.Items) {
@@ -404,8 +409,10 @@ namespace EntityWPFChat
         private void ButtonDelete_Click(object sender, RoutedEventArgs e) {
             db.Messages.Remove(ListViewMessages.SelectedItem as Message);
             ButtonDelete.Visibility = Visibility.Collapsed;
-            db.SaveChanges();
+
+            CurrentLoginedUser.MessageCount--;
             UpdateContent();
+            db.SaveChanges();
         }
 
         private void ListViewMessages_SelectionChanged(object sender, SelectionChangedEventArgs e) {
@@ -416,6 +423,18 @@ namespace EntityWPFChat
             else {
                 ButtonDelete.Visibility = Visibility.Collapsed;
             }
+
+        }
+
+        private void UsersFrom_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+
+            //int counter = 0;
+
+            //foreach (Message item in db.Messages) {
+            //    if ((UsersFrom.SelectedItem as Person).Name == item.Sender.Name) {
+            //        counter++;
+            //    }
+            //}
 
         }
     }

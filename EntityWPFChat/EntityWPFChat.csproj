@@ -107,6 +107,10 @@
     <Compile Include="Migrations\201808251901323_pictures.Designer.cs">
       <DependentUpon>201808251901323_pictures.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808281701469_badgetsneeds.cs" />
+    <Compile Include="Migrations\201808281701469_badgetsneeds.Designer.cs">
+      <DependentUpon>201808281701469_badgetsneeds.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelContext.cs" />
     <Compile Include="models\Message.cs" />
@@ -138,6 +142,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808251901323_pictures.resx">
       <DependentUpon>201808251901323_pictures.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808281701469_badgetsneeds.resx">
+      <DependentUpon>201808281701469_badgetsneeds.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

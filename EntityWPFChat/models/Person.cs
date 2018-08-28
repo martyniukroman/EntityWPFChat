@@ -63,6 +63,7 @@ namespace EntityWPFChat.models {
         public int ID { set; get; }
         public string Name { set; get; }
         public string Password { set; get; }
+        public int MessageCount { set; get; }
 
         public string Error => null;
     }
