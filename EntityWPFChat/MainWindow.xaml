@@ -112,7 +112,7 @@
 
         <!--Width="{Binding ElementName=FatherWin, Path=Width}" Height="{Binding ElementName=FatherWin, Path=Height}"-->
 
-        <Controls:Flyout Name="FlyOutRemove" Header="Delete account" Grid.Row="0" Grid.Column="0" Position="Left" Width="220" Grid.RowSpan="5" Grid.ColumnSpan="3">
+        <Controls:Flyout Name="FlyOutRemove" MouseLeave="FlyOutStyle_MouseLeave" Header="Delete account" Grid.Row="0" Grid.Column="0" Position="Left" Width="220" Grid.RowSpan="5" Grid.ColumnSpan="3">
             <StackPanel>
 
                 <Label FontSize="9" Margin="0,-25,60,5" HorizontalAlignment="Right">and cleanup usage data</Label>
@@ -152,7 +152,7 @@
                 
             </Grid>
         </Controls:Flyout>
-        <Controls:Flyout CloseButtonVisibility="Hidden" HorizontalAlignment="Stretch" Name="FlyOutRegistr" Header="Register or Sign in" Grid.Row="0" Grid.Column="0" Width="1000"  Position="Left" Grid.RowSpan="5" Grid.ColumnSpan="9">
+        <Controls:Flyout CloseButtonVisibility="Hidden"  HorizontalAlignment="Stretch" Name="FlyOutRegistr" Header="Register or Sign in" Grid.Row="0" Grid.Column="0" Width="1000"  Position="Left" Grid.RowSpan="5" Grid.ColumnSpan="9">
 
             <Grid>
 
@@ -204,7 +204,7 @@
 
 
         </Controls:Flyout>
-        <Controls:Flyout Name="FlyOutStyle" Header="Settings" Grid.Row="0" Grid.Column="0" Position="Top" Grid.RowSpan="5" Grid.ColumnSpan="6">
+        <Controls:Flyout Name="FlyOutStyle" MouseLeave="FlyOutStyle_MouseLeave" Header="Settings" Grid.Row="0" Grid.Column="0" Position="Top" Grid.RowSpan="5" Grid.ColumnSpan="6">
             <Grid>
 
                 <Grid.RowDefinitions>

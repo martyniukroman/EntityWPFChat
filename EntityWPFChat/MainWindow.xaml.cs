@@ -63,6 +63,7 @@ namespace EntityWPFChat
         Message message = new Message();
 
         public static string[] accentsArr = new string[] { "Red", "Green", "Blue", "Purple", "Orange", "Lime", "Emerald", "Teal", "Cyan", "Cobalt", "Indigo", "Violet", "Pink", "Magenta", "Crimson", "Amber", "Yellow", "Brown", "Olive", "Steel", "Mauve", "Taupe", "Sienna" };
+        public static string[] colors = new string[] { "Red", "Green", "Blue", "Purple", "Orange", "Pink", "Brown", "Olive", "Black", "Gray", "Tomato", "Coral", "Navy", "Orchid", "Plum", "Peru", "Silver", "Tan", "Teal",  };
 
         public void UpdateUI(string Accent, string Theme) {
             ThemeManager.ChangeAppStyle(this,
@@ -146,7 +147,7 @@ namespace EntityWPFChat
             //  char.IsLetter(TextBoxMain.Text.IndexOf("!") + 1
             //}
             string res = "";
-            foreach (var item in accentsArr) {
+            foreach (var item in colors) {
                 if (TextBoxMain.Text.Contains("!" + item.ToLower())) {
                     message.Color = item;
                 }
@@ -396,6 +397,10 @@ namespace EntityWPFChat
             ColorPicker.Color = Color.FromRgb(46, 78, 132);
             ButtonPhoto.Content = "🔗";
             ButtonPhoto.Foreground = new SolidColorBrush(Colors.Gray);
+        }
+
+        private void FlyOutStyle_MouseLeave(object sender, MouseEventArgs e) {
+            (sender as Flyout).IsOpen = false;
         }
     }
 }
