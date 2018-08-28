@@ -18,29 +18,42 @@ namespace EntityWPFChat.models {
                 switch (columnName) {
                     case "Name":
 
-                        if (Name.Length < 5) {
-                            error = "This name is to short for registration";
-                        }
+                        try {
+                            if (Name.Length < 5) {
+                                error = "This name is to short for registration";
+                            }
 
-                        foreach (var item in chars) {
-                            if (Name.Contains(item)) {
-                                error = "Name can not contain symbols";
+                            foreach (var item in chars) {
+                                if (Name.Contains(item)) {
+                                    error = "Name can not contain symbols";
+                                }
+                            }
+
+
+                            foreach (var item0 in people) {
+                                if (Name.ToLower() == item0.Name.ToLower()) {
+                                    error = "This user is currently exist";
+                                }
                             }
                         }
-                        
+                        catch (Exception) {
 
-                        foreach (var item0 in people) {
-                            if (Name.ToLower() == item0.Name.ToLower()) {
-                                error = "This user is currently exist";
-                            }
                         }
+                       
                         break;
 
                     case "Password":
 
-                        if (Password.Length < 5) {
-                            error = "Password is unsecure";
+                        try {
+                            if (Password.Length < 5) {
+                                error = "Password is unsecure";
+                            }
                         }
+                        catch (Exception) {
+
+                        }
+
+                      
 
                         break;
                 }
@@ -51,6 +64,6 @@ namespace EntityWPFChat.models {
         public string Name { set; get; }
         public string Password { set; get; }
 
-        public string Error => throw new NotImplementedException();
+        public string Error => null;
     }
 }

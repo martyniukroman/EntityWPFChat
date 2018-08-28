@@ -80,7 +80,7 @@
                             </Style>
                         </Border.Style>
                         <StackPanel>
-                            <Image MaxWidth="700" MaxHeight="500" Margin="15,15,15,-10" Source="{Binding Path=PictureLink}" ></Image>
+                            <Image MaxWidth="900" MaxHeight="500" Margin="15,15,15,-10" Source="{Binding Path=PictureLink}" ></Image>
                             <TextBlock Text="{Binding Path=MessageContent}" Foreground="Snow" Name="TextBlockContent" FontSize="15" Margin="15,10,15,0" HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap"></TextBlock>
                             <TextBlock Text="{Binding Path=Sender.Name}" Foreground="#e5e5e5" Name="TextBlockName" FontSize="10" Margin="20,0,20,0" HorizontalAlignment="Left"></TextBlock>
                             <TextBlock Text="{Binding Path=dateTime}" Foreground="#e5e5e5" Name="TextBlockDate" FontSize="10" Margin="20,0,20,3" HorizontalAlignment="Right"></TextBlock>

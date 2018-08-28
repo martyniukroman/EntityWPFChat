@@ -103,6 +103,7 @@ namespace EntityWPFChat
         public MainWindow(){
 
             InitializeComponent();
+            FlyOutRegistr.IsOpen = true;
 
             UpdateContent();
 
@@ -112,11 +113,12 @@ namespace EntityWPFChat
 
             System.Threading.Thread.Sleep(1000);
             CurrentLoginedUser = null;
-            FlyOutRegistr.IsOpen = true;
             UpdateContent();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e) {
+
+            Color tmpcolor = ColorPicker.Color;
 
             message.MessageContent = null;
             message.PictureLink = null;
@@ -137,11 +139,49 @@ namespace EntityWPFChat
             message.PictureLink = link;
             message.Color = ColorPicker.Color.ToString();
 
-            if (TextBoxMain.Text.Length <= 0 || TextBoxMain.Text == null) {
+
+        
+
+            //if (TextBoxMain.Text.ToLower().Contains("pink") {
+            //  char.IsLetter(TextBoxMain.Text.IndexOf("!") + 1
+            //}
+            string res = "";
+            foreach (var item in accentsArr) {
+                if (TextBoxMain.Text.Contains("!" + item.ToLower())) {
+                    message.Color = item;
+                }
+                //if (char.IsLetter(TextBoxMain.Text[TextBoxMain.Text.IndexOf("!") + 1]) == true) { // kostil
+                  
+                //}
+            }
+
+            try {
+                for (int i = 0; i < tmp.Length; i++) {
+                    if (tmp[i] == '!' && char.IsLetter(tmp[i + 1]))
+                        continue;
+                    else
+                        res += tmp[i];
+                }
+            }
+            catch (Exception) {
+
+            }
+
+            if (TextBoxMain.Text.Length <= 1 || TextBoxMain.Text == null) {
                 this.ShowMessageAsync("Error", "You wrote nothing");
                 return;
             }
-                message.MessageContent = tmp;
+
+
+            //foreach(char c in tmp) {
+            //    if (c == '!')
+            //        continue;
+            //    else
+            //        res += c;
+            //}
+
+
+            message.MessageContent = res;
 
             db.Messages.Add(message);
             db.SaveChanges();
@@ -149,6 +189,8 @@ namespace EntityWPFChat
             TextBoxMain.Clear();
             link = string.Empty;
             ButtonPhoto.Content = "🔗";
+            ColorPicker.Color = tmpcolor;
+
             UpdateContent();
         }
 
