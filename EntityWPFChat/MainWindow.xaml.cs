@@ -113,6 +113,9 @@ namespace EntityWPFChat
             this.DataContext = validPerson;
             DropDownAccents.ItemsSource = accentsArr;
 
+            DataGridCommandsInfo.ItemsSource = colors;
+            
+
             System.Threading.Thread.Sleep(1000);
             CurrentLoginedUser = null;
             UpdateContent();
