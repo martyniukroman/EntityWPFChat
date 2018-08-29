@@ -21,7 +21,7 @@
         <!--<ResourceDictionary Source="Themes/Generic.xaml" />-->
     </Window.Resources>
 
-    <Grid>
+    <Grid Name="GridMain">
 
         <Grid.Resources>
             <Style TargetType="ListViewItem" BasedOn="{StaticResource MetroListViewItem}">
@@ -49,7 +49,7 @@
         </Grid.RowDefinitions>
 
 
-        <Menu FontSize="13" Grid.ColumnSpan="6" BorderBrush="Snow" BorderThickness="1">
+        <Menu Opacity="0.9" FontSize="13" Grid.ColumnSpan="6">
             <MenuItem Name="MenuRegistr" Click="MenuRegistr_Click" Header="Sign in"></MenuItem>
             <MenuItem Name="MenuRemove" Click="MenuRemove_Click" Header="Delete account"></MenuItem>
             <MenuItem Name="MenuSettings" Click="MenuSettings_Click" Header="Settings"></MenuItem>
@@ -58,14 +58,14 @@
 
 
         <!--<Label BorderBrush="Snow" BorderThickness="1" Grid.Row="1">Select User:</Label>-->
-        <DataGrid Opacity="0.8" SelectionChanged="UsersFrom_SelectionChanged" Background="Transparent" Padding="5" HorizontalScrollBarVisibility="Disabled" IsReadOnly="True" HeadersVisibility="None" Name="UsersFrom" Grid.Row="1" Grid.RowSpan="2" ItemsSource="{Binding Path=People}" BorderBrush="Snow" BorderThickness="1">
+        <DataGrid Opacity="0.8" SelectionChanged="UsersFrom_SelectionChanged" Background="Transparent" Padding="5" HorizontalScrollBarVisibility="Disabled" IsReadOnly="True" HeadersVisibility="None" Name="UsersFrom" Grid.Row="1" Grid.RowSpan="2" ItemsSource="{Binding Path=People}">
 
             
             
             <DataGrid.RowDetailsTemplate>
                 <DataTemplate>
                     <Controls:Badged Name="BadgedMessageCounter" HorizontalAlignment="Center" Width="140" Margin="-13"  Badge="{Binding Path=MessageCount}" BadgePlacementMode="TopRight">
-                        <Label Width="10" HorizontalAlignment="Left" Content="{Binding Path=People.Name}" />
+                        <Label Width="10" HorizontalAlignment="Center" Content="{Binding Path=People.Name}" />
                     </Controls:Badged>
                 </DataTemplate>
             </DataGrid.RowDetailsTemplate>
@@ -73,7 +73,7 @@
         </DataGrid>
         <!--<DataGrid Name="UsersTo" Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" ItemsSource="{Binding Path=People}" BorderBrush="Snow" BorderThickness="1"></DataGrid>-->
 
-        <ScrollViewer Background="Transparent" Name="Scroll" Grid.RowSpan="3" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="5" BorderBrush="Snow" BorderThickness="1">
+        <ScrollViewer Background="Transparent" Name="Scroll" Grid.RowSpan="3" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="5">
 
             <ListView SelectionChanged="ListViewMessages_SelectionChanged" Background="Transparent" Foreground="Transparent" Name="ListViewMessages" BorderBrush="Snow" BorderThickness="1" >
 
@@ -102,7 +102,7 @@
                             </Border.Style>
                             <StackPanel>
                                 <Image MaxWidth="900" MaxHeight="500" Margin="15,15,15,-10" Source="{Binding Path=PictureLink}" ></Image>
-                                <TextBlock Text="{Binding Path=MessageContent}" Foreground="Snow" Name="TextBlockContent" FontSize="15" Margin="15,10,15,0" HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap"></TextBlock>
+                                <TextBlock PreviewMouseLeftButtonDown="TextBlockContent_MouseRightButtonDown" MouseLeave="TextBlockContent_MouseLeave" MouseEnter="TextBlockContent_MouseEnter" MouseRightButtonDown="TextBlockContent_MouseRightButtonDown" Text="{Binding Path=MessageContent}" Foreground="Snow" Name="TextBlockContent" FontSize="15" Margin="15,10,15,0" HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap"></TextBlock>
                                 <TextBlock Text="{Binding Path=Sender.Name}" Foreground="#e5e5e5" Name="TextBlockName" FontSize="10" Margin="20,0,20,0" HorizontalAlignment="Left"></TextBlock>
                                 <TextBlock Text="{Binding Path=dateTime}" Foreground="#e5e5e5" Name="TextBlockDate" FontSize="10" Margin="20,0,20,3" HorizontalAlignment="Right"></TextBlock>
                             </StackPanel>
@@ -115,11 +115,11 @@
 
         <!--<Image Margin="50" Grid.RowSpan="10" Grid.ColumnSpan="10" Name="ImageBackgroud" Source="https://vignette.wikia.nocookie.net/surrealmemes/images/1/17/Flawless_picardia_by_epycwyn-dbkbyfq.png/revision/latest?cb=20180418235839"></Image>-->
 
-        <TextBox Name="TextBoxMain" TextWrapping="Wrap" Grid.Row="4" Grid.ColumnSpan="5" FontSize="15" Controls:TextBoxHelper.WatermarkWrapping="WrapWithOverflow"></TextBox>
-        <Button Grid.Row="4" Grid.Column="5" FontSize="12" Click="Button_Click">Send</Button>
-        <Button Name="ButtonUpdate" Click="ButtonUpdate_Click" FontSize="40" Padding="0,-15,0,-6" Grid.Row="4" Grid.Column="3" >⟳</Button>
-        <Button Name="ButtonPhoto" Click="ButtonPhoto_Click" FontSize="25" Padding="0,0,0,0" Grid.Row="4" Grid.Column="4" >🔗</Button>
-        <Button Name="ButtonDelete" Visibility="Collapsed" Click="ButtonDelete_Click" FontSize="25" Padding="0,0,0,0" Grid.Row="4" Grid.Column="2" >🗑</Button>
+        <TextBox Opacity="0.9" Name="TextBoxMain" TextWrapping="Wrap" Grid.Row="4" Grid.ColumnSpan="5" FontSize="15" Controls:TextBoxHelper.WatermarkWrapping="WrapWithOverflow"></TextBox>
+        <Button Opacity="0.9" Grid.Row="4" Grid.Column="5" FontSize="12" Click="Button_Click">Send</Button>
+        <Button Opacity="0.9" Name="ButtonUpdate" Click="ButtonUpdate_Click" FontSize="40" Padding="0,-15,0,-6" Grid.Row="4" Grid.Column="3" >⟳</Button>
+        <Button Opacity="0.9" Name="ButtonPhoto" Click="ButtonPhoto_Click" FontSize="25" Padding="0,0,0,0" Grid.Row="4" Grid.Column="4" >🔗</Button>
+        <Button Opacity="0.9" Name="ButtonDelete" Visibility="Collapsed" Click="ButtonDelete_Click" FontSize="25" Padding="0,0,0,0" Grid.Row="4" Grid.Column="2" >🗑</Button>
 
 
         <GridSplitter Grid.Row="3" Grid.ColumnSpan="6" Height="2"
@@ -257,9 +257,9 @@
 
         <Controls:ProgressRing Name="ProgressRingLoading" IsActive="False" Grid.RowSpan="6" Grid.ColumnSpan="6"/>
 
-        <Grid.Background>
+        <!--<Grid.Background>
             <ImageBrush ImageSource="https://www.pixel-creation.com/wp-content/uploads/dragon-full-hd-wallpaper-and-background-image-1920x1080-id441572-1.jpg"/>
-        </Grid.Background>
+        </Grid.Background>-->
 
     </Grid>
 </Controls:MetroWindow>

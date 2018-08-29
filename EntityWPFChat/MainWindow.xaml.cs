@@ -114,7 +114,10 @@ namespace EntityWPFChat
             DropDownAccents.ItemsSource = accentsArr;
 
             DataGridCommandsInfo.ItemsSource = colors;
-            
+
+            ImageSource aaa = new BitmapImage(new Uri(@"https://www.pixel-creation.com/wp-content/uploads/dragon-full-hd-wallpaper-and-background-image-1920x1080-id441572-1.jpg", UriKind.Absolute));
+
+            GridMain.Background = new ImageBrush(aaa);
 
             System.Threading.Thread.Sleep(1000);
             CurrentLoginedUser = null;
@@ -440,6 +443,22 @@ namespace EntityWPFChat
             //    }
             //}
 
+        }
+
+        private void TextBlockContent_MouseEnter(object sender, MouseEventArgs e) {
+            if ((sender as TextBlock).Text.Contains("https://")) {
+                this.Cursor = Cursors.Hand;
+            }
+        }
+
+        private void TextBlockContent_MouseRightButtonDown(object sender, MouseButtonEventArgs e) {
+            if ((sender as TextBlock).Text.Contains("https://")) {
+                System.Diagnostics.Process.Start((sender as TextBlock).Text);
+            }
+        }
+
+        private void TextBlockContent_MouseLeave(object sender, MouseEventArgs e) {
+            this.Cursor = Cursors.Arrow;
         }
     }
 }
