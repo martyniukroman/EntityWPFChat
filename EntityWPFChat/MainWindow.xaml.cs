@@ -22,8 +22,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Timer = System.Threading.Timer;
 
-namespace EntityWPFChat
-{
+namespace EntityWPFChat {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -63,24 +62,24 @@ namespace EntityWPFChat
         Message message = new Message();
 
         public static string[] accentsArr = new string[] { "Red", "Green", "Blue", "Purple", "Orange", "Lime", "Emerald", "Teal", "Cyan", "Cobalt", "Indigo", "Violet", "Pink", "Magenta", "Crimson", "Amber", "Yellow", "Brown", "Olive", "Steel", "Mauve", "Taupe", "Sienna" };
-        public static string[] colors = new string[] { "Red", "Green", "Blue", "Purple", "Orange", "Pink", "Brown", "Olive", "Black", "Gray", "Tomato", "Coral", "Navy", "Orchid", "Plum", "Peru", "Silver", "Tan", "Teal",  };
+        public static string[] colors = new string[] { "Red", "Green", "Blue", "Purple", "Orange", "Pink", "Brown", "Olive", "Black", "Gray", "Tomato", "Coral", "Navy", "Orchid", "Plum", "Peru", "Silver", "Tan", "Teal", };
 
         public void UpdateUI(string Accent, string Theme) {
             ThemeManager.ChangeAppStyle(this,
                                    ThemeManager.GetAccent(Accent),
                                    ThemeManager.GetAppTheme(Theme));
         }
-        
+
         public void UpdateContent() {
 
             ProgressRingLoading.IsActive = true;
-         //   this.Title = CurrentLoginedUser.Name;
-           // System.Threading.Thread.Sleep(1000);
+            //   this.Title = CurrentLoginedUser.Name;
+            // System.Threading.Thread.Sleep(1000);
 
             try {
-              ListViewMessages.ItemsSource = db.Messages.ToList();
-              UsersFrom.ItemsSource = db.People.ToList();
-           //   UsersFromDelete.ItemsSource = db.People.ToList();
+                ListViewMessages.ItemsSource = db.Messages.ToList();
+                UsersFrom.ItemsSource = db.People.ToList();
+                //   UsersFromDelete.ItemsSource = db.People.ToList();
 
                 try {
                     UsersFrom.Columns[2].Visibility = Visibility.Collapsed;
@@ -89,12 +88,12 @@ namespace EntityWPFChat
                     // UsersFromDelete.Columns[2].Visibility = Visibility.Collapsed;
                 }
                 catch (Exception) {
-                    
+
                 }
 
             }
             catch (Exception) {
-               
+
             }
             finally {
                 Scroll.ScrollToEnd();
@@ -102,7 +101,7 @@ namespace EntityWPFChat
             }
         }
 
-        public MainWindow(){
+        public MainWindow() {
 
             InitializeComponent();
             FlyOutRegistr.IsOpen = true;
@@ -115,13 +114,24 @@ namespace EntityWPFChat
 
             DataGridCommandsInfo.ItemsSource = colors;
 
-            ImageSource aaa = new BitmapImage(new Uri(@"https://www.pixel-creation.com/wp-content/uploads/dragon-full-hd-wallpaper-and-background-image-1920x1080-id441572-1.jpg", UriKind.Absolute));
+            SetBackground(@"https://www.pixel-creation.com/wp-content/uploads/dragon-full-hd-wallpaper-and-background-image-1920x1080-id441572-1.jpg");
 
-            GridMain.Background = new ImageBrush(aaa);
-
-            System.Threading.Thread.Sleep(1000);
+            //System.Threading.Thread.Sleep(1000);
             CurrentLoginedUser = null;
             UpdateContent();
+        }
+
+        public void SetBackground(string source) {
+
+            ImageBrush myBrush = new ImageBrush();
+            Image image = new Image();
+
+            image.Source = new BitmapImage(new Uri(source));
+
+            image.Stretch = Stretch.Fill;
+
+            myBrush.ImageSource = image.Source;
+            GridMain.Background = myBrush;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e) {
@@ -158,7 +168,7 @@ namespace EntityWPFChat
                     message.Color = item;
                 }
                 //if (char.IsLetter(TextBoxMain.Text[TextBoxMain.Text.IndexOf("!") + 1]) == true) { // kostil
-                  
+
                 //}
             }
 
@@ -266,19 +276,19 @@ namespace EntityWPFChat
                 this.ShowMessageAsync("Error", ex.Message);
             }
 
-            
+
         }
 
-        private void TextBoxNameRegistr_TextChanged(object sender, TextChangedEventArgs e) {       
+        private void TextBoxNameRegistr_TextChanged(object sender, TextChangedEventArgs e) {
 
-            if (System.Windows.Controls.Validation.GetHasError(TextBoxNameRegistr))  
-                 Valid = false;
+            if (System.Windows.Controls.Validation.GetHasError(TextBoxNameRegistr))
+                Valid = false;
             else
                 Valid = true;
         }
 
         private void ButtonUserRemove_Click(object sender, RoutedEventArgs e) {
-             
+
             try {
 
                 UpdateContent();
@@ -286,9 +296,9 @@ namespace EntityWPFChat
                 if (CurrentLoginedUser.Password == TextBoxConfirmPass.Password) {
 
                     foreach (Message item in db.Messages) { // ex
-                   //         MessageBox.Show(item.Sender.Name, CurrentLoginedUser.Name);
+                                                            //         MessageBox.Show(item.Sender.Name, CurrentLoginedUser.Name);
                         if (item.Sender.Name == CurrentLoginedUser.Name) {
-                //            MessageBox.Show("Within if", CurrentLoginedUser.Name);
+                            //            MessageBox.Show("Within if", CurrentLoginedUser.Name);
                             db.Messages.Remove(item);
                         }
                     }
@@ -310,7 +320,7 @@ namespace EntityWPFChat
                 FlyOutRegistr.IsOpen = true;
             }
 
-           
+
         }
 
         private void ButtonUpdate_Click(object sender, RoutedEventArgs e) {
@@ -318,7 +328,7 @@ namespace EntityWPFChat
         }
 
         private void MenuSettings_Click(object sender, RoutedEventArgs e) {
-            FlyOutStyle.IsOpen = true;       
+            FlyOutStyle.IsOpen = true;
         }
 
         private void DropDownAccents_SelectionChanged(object sender, SelectionChangedEventArgs e) {
@@ -327,11 +337,46 @@ namespace EntityWPFChat
                 UpdateUI(DropDownAccents.SelectedItem.ToString(), "BaseDark");
             else
                 UpdateUI(DropDownAccents.SelectedItem.ToString(), "BaseLight");
+
+            string Red = @"https://wallpapers.gg/wp-content/uploads/2017/07/The-Red-Dragon.png";
+            string Blue = @"https://www.pixel-creation.com/wp-content/uploads/dragon-full-hd-wallpaper-and-background-image-1920x1080-id441572-1.jpg";
+            string Steel = @"https://wallpapers.gg/wp-content/uploads/2017/07/The-Black-Dragon.jpg";
+            string Green = @"https://wallpaper-gallery.net/images/green-dragon-wallpapers/green-dragon-wallpapers-9.jpg";
+            string Orange = @"https://youmeandtrends.com/wp-content/uploads/2015/09/oriental_dragon_w1.jpeg";
+            string Pink = @"http://1920x1080hdwallpapers.com/image/201502/anime/168/pink-dragon-unicorn-crystal-treasures.jpg";
+            string Yellow = @"https://hdqwalls.com/download/game-of-thrones-season-7-drogon-and-khaleesi-im-1920x1080.jpg";
+
+            List<string> Dragons = new List<string>();
+            Dragons.Add(Red);
+            Dragons.Add(Blue);
+            Dragons.Add(Steel);
+            Dragons.Add(Green);
+            Dragons.Add(Orange);
+            Dragons.Add(Pink);
+            Dragons.Add(Yellow);
+
+
+            if (DropDownAccents.SelectedItem.ToString() == "Red")
+                SetBackground(Red);
+            if (DropDownAccents.SelectedItem.ToString() == "Blue")
+                SetBackground(Blue);
+            if (DropDownAccents.SelectedItem.ToString() == "Steel")
+                SetBackground(Steel);
+            if (DropDownAccents.SelectedItem.ToString() == "Green")
+                SetBackground(Green);
+            if (DropDownAccents.SelectedItem.ToString() == "Orange")
+                SetBackground(Orange);
+            if (DropDownAccents.SelectedItem.ToString() == "Pink")
+                SetBackground(Pink);
+            if (DropDownAccents.SelectedItem.ToString() == "Yellow")
+                SetBackground(Yellow);
+
+
         }
 
         private void ToggleSwitch_Click(object sender, RoutedEventArgs e) {
-            if (ThemeSwitch.IsChecked == false) 
-                UpdateUI(DropDownAccents.SelectedItem.ToString(), "BaseDark");       
+            if (ThemeSwitch.IsChecked == false)
+                UpdateUI(DropDownAccents.SelectedItem.ToString(), "BaseDark");
             else
                 UpdateUI(DropDownAccents.SelectedItem.ToString(), "BaseLight");
         }
@@ -348,8 +393,10 @@ namespace EntityWPFChat
             FlyOutRegistr.Width = this.ActualWidth;
             FlyOutRegistr.Height = this.ActualHeight;
 
-            FatherWin.Tag = FatherWin.ActualWidth / 2;
-            
+            FatherWin.Tag = FatherWin.ActualWidth / 3;
+
+            this.Height = this.Width / 1.7;
+
         }
 
         private void MetroWindow_StateChanged(object sender, EventArgs e) {
@@ -365,7 +412,7 @@ namespace EntityWPFChat
 
         private void TextBoxLinkToImage_TextChanged(object sender, TextChangedEventArgs e) {
             try {
-                   ImageAttachPreview.Source = new BitmapImage(new Uri(TextBoxLinkToImage.Text));
+                ImageAttachPreview.Source = new BitmapImage(new Uri(TextBoxLinkToImage.Text));
             }
             catch (Exception) {
 
@@ -385,7 +432,7 @@ namespace EntityWPFChat
                 ButtonPhoto.Content = "🔗";
 
             FlyOutAttach.IsOpen = false;
-            
+
         }
 
         private void ButtonAttachCencel_Click(object sender, RoutedEventArgs e) {
@@ -460,5 +507,6 @@ namespace EntityWPFChat
         private void TextBlockContent_MouseLeave(object sender, MouseEventArgs e) {
             this.Cursor = Cursors.Arrow;
         }
+
     }
 }

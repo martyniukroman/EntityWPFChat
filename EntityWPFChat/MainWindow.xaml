@@ -58,7 +58,7 @@
 
 
         <!--<Label BorderBrush="Snow" BorderThickness="1" Grid.Row="1">Select User:</Label>-->
-        <DataGrid Opacity="0.8" SelectionChanged="UsersFrom_SelectionChanged" Background="Transparent" Padding="5" HorizontalScrollBarVisibility="Disabled" IsReadOnly="True" HeadersVisibility="None" Name="UsersFrom" Grid.Row="1" Grid.RowSpan="2" ItemsSource="{Binding Path=People}">
+        <DataGrid Opacity="0.8" SelectionChanged="UsersFrom_SelectionChanged" Background="Transparent" Padding="10" HorizontalScrollBarVisibility="Disabled" IsReadOnly="True" HeadersVisibility="None" Name="UsersFrom" Grid.Row="1" Grid.RowSpan="2" ItemsSource="{Binding Path=People}">
 
             
             
@@ -75,7 +75,7 @@
 
         <ScrollViewer Background="Transparent" Name="Scroll" Grid.RowSpan="3" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="5">
 
-            <ListView SelectionChanged="ListViewMessages_SelectionChanged" Background="Transparent" Foreground="Transparent" Name="ListViewMessages" BorderBrush="Snow" BorderThickness="1" >
+            <ListView SelectionChanged="ListViewMessages_SelectionChanged" Background="Transparent" Foreground="Transparent" Name="ListViewMessages">
 
                 <!--<ListView.ItemsPanel>
                 <ItemsPanelTemplate>
