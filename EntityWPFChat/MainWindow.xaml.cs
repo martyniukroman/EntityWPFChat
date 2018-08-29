@@ -62,7 +62,7 @@ namespace EntityWPFChat {
         Message message = new Message();
 
         public static string[] accentsArr = new string[] { "Red", "Green", "Blue", "Purple", "Orange", "Lime", "Emerald", "Teal", "Cyan", "Cobalt", "Indigo", "Violet", "Pink", "Magenta", "Crimson", "Amber", "Yellow", "Brown", "Olive", "Steel", "Mauve", "Taupe", "Sienna" };
-        public static string[] colors = new string[] { "Red", "Green", "Blue", "Purple", "Orange", "Pink", "Brown", "Olive", "Black", "Gray", "Tomato", "Coral", "Navy", "Orchid", "Plum", "Peru", "Silver", "Tan", "Teal", };
+        public static string[] colors = new string[] { "Green", "Purple", "Orange", "Brown", "Olive", "Black", "Gray", "Tomato", "Coral", "Navy", "Orchid", "Plum", "Peru", "Silver", "Tan", "Teal", };
 
         public void UpdateUI(string Accent, string Theme) {
             ThemeManager.ChangeAppStyle(this,
@@ -135,6 +135,10 @@ namespace EntityWPFChat {
         }
 
         private void Button_Click(object sender, RoutedEventArgs e) {
+            SendMessage();
+        }
+
+        private void SendMessage() {
 
             Color tmpcolor = ColorPicker.Color;
 
@@ -508,5 +512,10 @@ namespace EntityWPFChat {
             this.Cursor = Cursors.Arrow;
         }
 
+        private void TextBoxMain_KeyDown(object sender, KeyEventArgs e) {
+            if (e.Key == Key.Enter) {
+                SendMessage();
+            }
+        }
     }
 }

@@ -115,7 +115,7 @@
 
         <!--<Image Margin="50" Grid.RowSpan="10" Grid.ColumnSpan="10" Name="ImageBackgroud" Source="https://vignette.wikia.nocookie.net/surrealmemes/images/1/17/Flawless_picardia_by_epycwyn-dbkbyfq.png/revision/latest?cb=20180418235839"></Image>-->
 
-        <TextBox Opacity="0.9" Name="TextBoxMain" TextWrapping="Wrap" Grid.Row="4" Grid.ColumnSpan="5" FontSize="15" Controls:TextBoxHelper.WatermarkWrapping="WrapWithOverflow"></TextBox>
+        <TextBox KeyDown="TextBoxMain_KeyDown" Opacity="0.9" Name="TextBoxMain" TextWrapping="Wrap" Grid.Row="4" Grid.ColumnSpan="5" FontSize="15" Controls:TextBoxHelper.WatermarkWrapping="WrapWithOverflow"></TextBox>
         <Button Opacity="0.9" Grid.Row="4" Grid.Column="5" FontSize="12" Click="Button_Click">Send</Button>
         <Button Opacity="0.9" Name="ButtonUpdate" Click="ButtonUpdate_Click" FontSize="40" Padding="0,-15,0,-6" Grid.Row="4" Grid.Column="3" >⟳</Button>
         <Button Opacity="0.9" Name="ButtonPhoto" Click="ButtonPhoto_Click" FontSize="25" Padding="0,0,0,0" Grid.Row="4" Grid.Column="4" >🔗</Button>
