@@ -23,13 +23,13 @@
 
     <Grid>
 
-        <!--<Grid.Resources>
-            <Style TargetType="ListViewItem">
-              
+        <Grid.Resources>
+            <Style TargetType="ListViewItem" BasedOn="{StaticResource MetroListViewItem}">
+                <Setter Property="Background" Value="Transparent"></Setter>
                 
             </Style>
             
-        </Grid.Resources>-->
+        </Grid.Resources>
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="180"/>
@@ -98,7 +98,6 @@
                                             </MultiBinding>
                                         </Setter.Value>
                                     </Setter>
-                                    <!--<Setter Property="Background" Value="Transparent"></Setter>-->
                                 </Style>
                             </Border.Style>
                             <StackPanel>
@@ -137,7 +136,7 @@
 
         <!--Width="{Binding ElementName=FatherWin, Path=Width}" Height="{Binding ElementName=FatherWin, Path=Height}"-->
 
-        <Controls:Flyout Opacity="0.95" Name="FlyOutRemove" MouseLeave="FlyOutStyle_MouseLeave" Header="Delete account" Grid.Row="0" Grid.Column="0" Position="Left" Width="220" Grid.RowSpan="5" Grid.ColumnSpan="3">
+        <Controls:Flyout Name="FlyOutRemove" MouseLeave="FlyOutStyle_MouseLeave" Header="Delete account" Grid.Row="0" Grid.Column="0" Position="Left" Width="220" Grid.RowSpan="5" Grid.ColumnSpan="3">
             <StackPanel>
 
                 <Label FontSize="9" Margin="0,-25,60,5" HorizontalAlignment="Right">and cleanup usage data</Label>
@@ -148,7 +147,7 @@
 
             </StackPanel>
         </Controls:Flyout>
-        <Controls:Flyout Opacity="0.95" CloseButtonVisibility="Collapsed" Name="FlyOutAttach" Grid.Row="0" Grid.Column="0" Position="Bottom" Height="100" Grid.RowSpan="5" Grid.ColumnSpan="6">
+        <Controls:Flyout CloseButtonVisibility="Collapsed" Name="FlyOutAttach" Grid.Row="0" Grid.Column="0" Position="Bottom" Height="100" Grid.RowSpan="5" Grid.ColumnSpan="6">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
@@ -177,7 +176,7 @@
 
             </Grid>
         </Controls:Flyout>
-        <Controls:Flyout CloseButtonVisibility="Hidden"  HorizontalAlignment="Stretch" Name="FlyOutRegistr" Header="Register or Sign in" Grid.Row="0" Grid.Column="0" Width="1000"  Position="Left" Grid.RowSpan="5" Grid.ColumnSpan="9">
+        <Controls:Flyout CloseButtonVisibility="Hidden" HorizontalAlignment="Stretch" Name="FlyOutRegistr" Header="Register or Sign in" Grid.Row="0" Grid.Column="0" Width="1000"  Position="Left" Grid.RowSpan="5" Grid.ColumnSpan="9">
 
             <Grid>
 
@@ -222,7 +221,7 @@
 
 
         </Controls:Flyout>
-        <Controls:Flyout Opacity="0.95" Height="200" Name="FlyOutStyle" MouseLeave="FlyOutStyle_MouseLeave" Header="Settings" Grid.Row="0" Grid.Column="0" Position="Top" Grid.RowSpan="5" Grid.ColumnSpan="6">
+        <Controls:Flyout Height="200" Name="FlyOutStyle" MouseLeave="FlyOutStyle_MouseLeave" Header="Settings" Grid.Row="0" Grid.Column="0" Position="Top" Grid.RowSpan="5" Grid.ColumnSpan="6">
             <Grid>
 
                 <Grid.RowDefinitions>
