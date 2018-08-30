@@ -80,31 +80,10 @@ namespace EntityWPFChat {
             
 
             try {
-
                 //ListViewMessages.ItemsSource = db.Messages.ToList();
-                RoomsFrom.ItemsSource = db.ChatRooms.ToList();
                 UsersFrom.ItemsSource = db.People.ToList();
-
-                foreach (Message item in db.Messages) {
-                    if (item.Room.ID == CurrentRoom.ID) {
-                        ListViewMessages.Items.Add(item);
-                    }
-                }
-
-                try {
-                    //UsersFrom.Columns[0].Visibility = Visibility.Collapsed;
-                    //UsersFrom.Columns[2].Visibility = Visibility.Collapsed;
-                    //UsersFrom.Columns[3].Visibility = Visibility.Collapsed;
-
-                    //RoomsFrom.Columns[0].Visibility = Visibility.Collapsed;
-                    //RoomsFrom.Columns[2].Visibility = Visibility.Collapsed;
-                    //RoomsFrom.Columns[3].Visibility = Visibility.Collapsed;
-
-                    // UsersFromDelete.Columns[2].Visibility = Visibility.Collapsed;
-                }
-                catch (Exception) {
-
-                }
+           //     RoomsFrom.ItemsSource = db.ChatRooms.ToList();
+                ListViewMessages.ItemsSource = db.Messages.ToList();
 
             }
             catch (Exception) {
@@ -560,10 +539,9 @@ namespace EntityWPFChat {
             foreach (Rooms item in db.ChatRooms) {
                 if ((RoomsFrom.SelectedItem as Rooms).ID == item.ID) {
                     CurrentRoom = item;
-                    ListViewMessages.Items.Clear();
-                    UpdateContent();
                 }
             }
+                    UpdateContent();
         }
     }
 }
