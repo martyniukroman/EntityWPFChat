@@ -517,5 +517,13 @@ namespace EntityWPFChat {
                 SendMessage();
             }
         }
+
+        private void TextBoxLinkToBack_TextChanged(object sender, TextChangedEventArgs e) {
+            ImageBackPreview.Source = new BitmapImage(new Uri(TextBoxLinkToBack.Text));
+        }
+
+        private void ButtonImplementBackground_Click(object sender, RoutedEventArgs e) {
+            SetBackground(TextBoxLinkToBack.Text);
+        }
     }
 }

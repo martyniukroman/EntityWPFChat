@@ -221,13 +221,15 @@
 
 
         </Controls:Flyout>
-        <Controls:Flyout Height="200" Name="FlyOutStyle" MouseLeave="FlyOutStyle_MouseLeave" Header="Settings" Grid.Row="0" Grid.Column="0" Position="Top" Grid.RowSpan="5" Grid.ColumnSpan="6">
+        <Controls:Flyout Height="400" Name="FlyOutStyle" MouseLeave="FlyOutStyle_MouseLeave" Header="Settings" Grid.Row="0" Grid.Column="0" Position="Top" Grid.RowSpan="5" Grid.ColumnSpan="6">
             <Grid>
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="60"/>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="50"/>
                 </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions>
@@ -248,7 +250,12 @@
 
                 <Label Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="4" Margin="0,-15,0,0" FontSize="15" VerticalAlignment="Top" HorizontalAlignment="Left">*Remember to get your commands with "!" on the begin, and also use lovercase</Label>
                 <Label Grid.Column="1" Margin="0,15,0,0" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left">!</Label>
-                <ListView Margin="20" Grid.Column="1" Grid.RowSpan="3" Background="Transparent" Padding="5" Name="DataGridCommandsInfo"/>
+                <ListView Margin="20" Grid.Column="1" Grid.RowSpan="4" Background="Transparent" Padding="5" Name="DataGridCommandsInfo"/>
+
+                <Label Grid.Row="1" Grid.Column="2" Grid.RowSpan="3" Grid.ColumnSpan="4" FontSize="30" HorizontalAlignment="Center" Foreground="Gray" VerticalAlignment="Center">Preview</Label>
+                <Image Grid.Row="1" Grid.Column="2" Grid.RowSpan="3" Grid.ColumnSpan="4" Margin="15" Name="ImageBackPreview"></Image>
+                <TextBox Name="TextBoxLinkToBack" TextChanged="TextBoxLinkToBack_TextChanged" Height="30" Margin="20,5,5,5" FontSize="15" Grid.ColumnSpan="4" Grid.Row="4" Grid.Column="1" Controls:TextBoxHelper.Watermark="To set custom background paste link here" Controls:TextBoxHelper.ClearTextButton="True"></TextBox>
+                <Button Click="ButtonImplementBackground_Click" Name="ButtonImplementBackground" Margin="10" Grid.Column="5" Grid.Row="4">Implement</Button>
 
 
             </Grid>
