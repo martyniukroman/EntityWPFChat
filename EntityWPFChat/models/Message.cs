@@ -13,7 +13,6 @@ namespace EntityWPFChat.models {
         public string Color { set; get; }
 
         public Person Sender { set; get; }
-        public Person Receiver { set; get; }
-
+        public Rooms Room { set; get; }
     }
 }

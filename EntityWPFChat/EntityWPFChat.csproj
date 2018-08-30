@@ -111,10 +111,31 @@
     <Compile Include="Migrations\201808281701469_badgetsneeds.Designer.cs">
       <DependentUpon>201808281701469_badgetsneeds.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808300919325_Rooms.cs" />
+    <Compile Include="Migrations\201808300919325_Rooms.Designer.cs">
+      <DependentUpon>201808300919325_Rooms.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808300923064_RoomRemoved.cs" />
+    <Compile Include="Migrations\201808300923064_RoomRemoved.Designer.cs">
+      <DependentUpon>201808300923064_RoomRemoved.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808300928228_Rooms1.cs" />
+    <Compile Include="Migrations\201808300928228_Rooms1.Designer.cs">
+      <DependentUpon>201808300928228_Rooms1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808301101211_roomsdbset.cs" />
+    <Compile Include="Migrations\201808301101211_roomsdbset.Designer.cs">
+      <DependentUpon>201808301101211_roomsdbset.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808301155535_roomsfixes.cs" />
+    <Compile Include="Migrations\201808301155535_roomsfixes.Designer.cs">
+      <DependentUpon>201808301155535_roomsfixes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelContext.cs" />
     <Compile Include="models\Message.cs" />
     <Compile Include="models\Person.cs" />
+    <Compile Include="models\Rooms.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -145,6 +166,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808281701469_badgetsneeds.resx">
       <DependentUpon>201808281701469_badgetsneeds.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808300919325_Rooms.resx">
+      <DependentUpon>201808300919325_Rooms.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808300923064_RoomRemoved.resx">
+      <DependentUpon>201808300923064_RoomRemoved.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808300928228_Rooms1.resx">
+      <DependentUpon>201808300928228_Rooms1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808301101211_roomsdbset.resx">
+      <DependentUpon>201808301101211_roomsdbset.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808301155535_roomsfixes.resx">
+      <DependentUpon>201808301155535_roomsfixes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

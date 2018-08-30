@@ -60,6 +60,7 @@ namespace EntityWPFChat {
 
         Person CurrentLoginedUser;
         Message message = new Message();
+        Rooms CurrentRoom;
 
         public static string[] accentsArr = new string[] { "Red", "Green", "Blue", "Purple", "Orange", "Lime", "Emerald", "Teal", "Cyan", "Cobalt", "Indigo", "Violet", "Pink", "Magenta", "Crimson", "Amber", "Yellow", "Brown", "Olive", "Steel", "Mauve", "Taupe", "Sienna" };
         public static string[] colors = new string[] { "Green", "Purple", "Orange", "Brown", "Olive", "Black", "Gray", "Tomato", "Coral", "Navy", "Orchid", "Plum", "Peru", "Silver", "Tan", "Teal", };
@@ -76,15 +77,29 @@ namespace EntityWPFChat {
             //   this.Title = CurrentLoginedUser.Name;
             // System.Threading.Thread.Sleep(1000);
 
+            
+
             try {
-                ListViewMessages.ItemsSource = db.Messages.ToList();
+
+                //ListViewMessages.ItemsSource = db.Messages.ToList();
+                RoomsFrom.ItemsSource = db.ChatRooms.ToList();
                 UsersFrom.ItemsSource = db.People.ToList();
-                //   UsersFromDelete.ItemsSource = db.People.ToList();
+
+                foreach (Message item in db.Messages) {
+                    if (item.Room.ID == CurrentRoom.ID) {
+                        ListViewMessages.Items.Add(item);
+                    }
+                }
 
                 try {
-                    UsersFrom.Columns[2].Visibility = Visibility.Collapsed;
-                    UsersFrom.Columns[0].Visibility = Visibility.Collapsed;
-                    UsersFrom.Columns[3].Visibility = Visibility.Collapsed;
+                    //UsersFrom.Columns[0].Visibility = Visibility.Collapsed;
+                    //UsersFrom.Columns[2].Visibility = Visibility.Collapsed;
+                    //UsersFrom.Columns[3].Visibility = Visibility.Collapsed;
+
+                    //RoomsFrom.Columns[0].Visibility = Visibility.Collapsed;
+                    //RoomsFrom.Columns[2].Visibility = Visibility.Collapsed;
+                    //RoomsFrom.Columns[3].Visibility = Visibility.Collapsed;
+
                     // UsersFromDelete.Columns[2].Visibility = Visibility.Collapsed;
                 }
                 catch (Exception) {
@@ -114,24 +129,33 @@ namespace EntityWPFChat {
 
             DataGridCommandsInfo.ItemsSource = colors;
 
+
+
             SetBackground(@"https://www.pixel-creation.com/wp-content/uploads/dragon-full-hd-wallpaper-and-background-image-1920x1080-id441572-1.jpg");
 
             //System.Threading.Thread.Sleep(1000);
             CurrentLoginedUser = null;
+            CurrentRoom = null;
             UpdateContent();
         }
 
         public void SetBackground(string source) {
 
-            ImageBrush myBrush = new ImageBrush();
-            Image image = new Image();
+            try {
+                ImageBrush myBrush = new ImageBrush();
+                Image image = new Image();
 
-            image.Source = new BitmapImage(new Uri(source));
+                image.Source = new BitmapImage(new Uri(source));
 
-            image.Stretch = Stretch.Fill;
+                image.Stretch = Stretch.Fill;
 
-            myBrush.ImageSource = image.Source;
-            GridMain.Background = myBrush;
+                myBrush.ImageSource = image.Source;
+                GridMain.Background = myBrush;
+            }
+            catch (Exception) {
+
+            }
+           
         }
 
         private void Button_Click(object sender, RoutedEventArgs e) {
@@ -156,7 +180,6 @@ namespace EntityWPFChat {
             UsersFrom.SelectedItem = CurrentLoginedUser;
 
             message.Sender = (UsersFrom.SelectedItem as Person);
-            message.Receiver = UsersFrom.SelectedItem as Person;
             message.dateTime = DateTime.Now;
             message.PictureLink = link;
             message.Color = ColorPicker.Color.ToString();
@@ -519,11 +542,28 @@ namespace EntityWPFChat {
         }
 
         private void TextBoxLinkToBack_TextChanged(object sender, TextChangedEventArgs e) {
-            ImageBackPreview.Source = new BitmapImage(new Uri(TextBoxLinkToBack.Text));
+
+            try {
+                ImageBackPreview.Source = new BitmapImage(new Uri(TextBoxLinkToBack.Text));
+            }
+            catch (Exception) {
+
+            }
+
         }
 
         private void ButtonImplementBackground_Click(object sender, RoutedEventArgs e) {
             SetBackground(TextBoxLinkToBack.Text);
+        }
+
+        private void RoomsFrom_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            foreach (Rooms item in db.ChatRooms) {
+                if ((RoomsFrom.SelectedItem as Rooms).ID == item.ID) {
+                    CurrentRoom = item;
+                    ListViewMessages.Items.Clear();
+                    UpdateContent();
+                }
+            }
         }
     }
 }
