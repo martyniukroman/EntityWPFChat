@@ -289,7 +289,7 @@ namespace EntityWPFChat {
                         TextBoxNameRegistrPswd.Clear();
                         UsersFrom.SelectedItem = CurrentLoginedUser;
 
-                        if (CurrentLoginedUser.isRoot)
+                        if (CurrentLoginedUser != null && CurrentLoginedUser.isRoot)
                             MenuRoot.Visibility = Visibility.Visible;
                         else
                             MenuRoot.Visibility = Visibility.Collapsed;
@@ -311,7 +311,6 @@ namespace EntityWPFChat {
                     TextBoxNameRegistr.Clear();
                     TextBoxNameRegistrPswd.Clear();
                     UsersFrom.SelectedItem = CurrentLoginedUser;
-
                     FlyOutRegistr.IsOpen = false;
                 }
                 else {
@@ -323,7 +322,7 @@ namespace EntityWPFChat {
                 this.ShowMessageAsync("Error", ex.Message);
             }
             finally {
-                if (CurrentLoginedUser.isRoot) 
+                if (CurrentLoginedUser != null && CurrentLoginedUser.isRoot) 
                     MenuRoot.Visibility = Visibility.Visible;           
                 else
                     MenuRoot.Visibility = Visibility.Collapsed;
