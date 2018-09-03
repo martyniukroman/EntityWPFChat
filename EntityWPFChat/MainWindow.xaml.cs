@@ -82,7 +82,6 @@ namespace EntityWPFChat {
                 ListViewMessages.Items.Clear();
 
                 //ListViewMessages.ItemsSource = db.Messages.ToList();
-                RoomsFrom.ItemsSource = db.ChatRooms.ToList();
                 UsersFrom.ItemsSource = db.People.ToList();
 
 

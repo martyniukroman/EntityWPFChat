@@ -64,8 +64,8 @@
                 <DataTemplate>
                     <!--<TextBlock Text="{Binding Name}"></TextBlock>-->
                    
-                    <Controls:Badged Name="BadgedMessageCounter" HorizontalAlignment="Center" Width="140" Margin="-5,0,0,0"  Badge="{Binding Path=MessageCount}" BadgePlacementMode="Right">
-                        <TextBlock Text="{Binding Name}"></TextBlock>
+                    <Controls:Badged Name="BadgedMessageCounter" HorizontalAlignment="Center" Width="140" Margin="-10,0,0,0"  Badge="{Binding Path=MessageCount}" BadgePlacementMode="Right">
+                        <TextBlock Opacity="0.8" Text="{Binding Name}"></TextBlock>
                     </Controls:Badged>
                 </DataTemplate>
             </ListBox.ItemTemplate>
@@ -75,10 +75,9 @@
         <ListBox SelectedIndex="0" VerticalAlignment="Bottom" Opacity="0.8" SelectionChanged="RoomsFrom_SelectionChanged" Background="Transparent" Padding="10" Name="RoomsFrom" Grid.Row="3" Grid.RowSpan="1">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Name}"></TextBlock>
-                    <!--<Controls:Badged Name="BadgedMessageCounter" HorizontalAlignment="Center" Width="140" Margin="-13"  Badge="{Binding Path=MessageCount}" BadgePlacementMode="TopRight">
-                        <Label Width="10" HorizontalAlignment="Center" Content="{Binding Name}" />
-                    </Controls:Badged>-->
+                    <Controls:Badged Name="BadgedMessageCounter" HorizontalAlignment="Center" Width="140" Margin="-1,0,0,0"  Badge="{Binding Path=Messages.Count}" BadgePlacementMode="Right">
+                        <TextBlock Opacity="0.8" Text="{Binding Name}"></TextBlock>
+                    </Controls:Badged>
                 </DataTemplate>
             </ListBox.ItemTemplate>
 
