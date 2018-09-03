@@ -81,8 +81,10 @@ namespace EntityWPFChat {
 
                 ListViewMessages.Items.Clear();
 
-                //ListViewMessages.ItemsSource = db.Messages.ToList();
+               
                 UsersFrom.ItemsSource = db.People.ToList();
+                RoomsFrom.ItemsSource = db.ChatRooms.ToList();
+                RoomsFromRootControls.ItemsSource = db.ChatRooms.ToList();
 
 
                 //foreach (Message item in db.Messages) {
@@ -191,7 +193,7 @@ namespace EntityWPFChat {
             message.PictureLink = link;
             message.Color = ColorPicker.Color.ToString();
 
-            MessageBox.Show((RoomsFrom.SelectedItem as Rooms).Name, "within sendmessage");
+      //      MessageBox.Show((RoomsFrom.SelectedItem as Rooms).Name, "within sendmessage");
             message.Room = RoomsFrom.SelectedItem as Rooms;
 
            
@@ -286,6 +288,12 @@ namespace EntityWPFChat {
                         TextBoxNameRegistr.Clear();
                         TextBoxNameRegistrPswd.Clear();
                         UsersFrom.SelectedItem = CurrentLoginedUser;
+
+                        if (CurrentLoginedUser.isRoot)
+                            MenuRoot.Visibility = Visibility.Visible;
+                        else
+                            MenuRoot.Visibility = Visibility.Collapsed;
+
                         FlyOutRegistr.IsOpen = false;
                         return;
                     }
@@ -299,11 +307,11 @@ namespace EntityWPFChat {
                     CurrentLoginedUser = tmp;
                     db.People.Add(tmp);
                     db.SaveChanges();
-
                     UpdateContent();
                     TextBoxNameRegistr.Clear();
                     TextBoxNameRegistrPswd.Clear();
                     UsersFrom.SelectedItem = CurrentLoginedUser;
+
                     FlyOutRegistr.IsOpen = false;
                 }
                 else {
@@ -314,7 +322,12 @@ namespace EntityWPFChat {
             catch (Exception ex) {
                 this.ShowMessageAsync("Error", ex.Message);
             }
-
+            finally {
+                if (CurrentLoginedUser.isRoot) 
+                    MenuRoot.Visibility = Visibility.Visible;           
+                else
+                    MenuRoot.Visibility = Visibility.Collapsed;
+            }  
 
         }
 
@@ -495,7 +508,7 @@ namespace EntityWPFChat {
         }
 
         private void FlyOutStyle_MouseLeave(object sender, MouseEventArgs e) {
-            (sender as Flyout).IsOpen = false;
+           //(sender as Flyout).IsOpen = false;
         }
 
         private void ButtonDelete_Click(object sender, RoutedEventArgs e) {
@@ -569,12 +582,49 @@ namespace EntityWPFChat {
         }
 
         private void RoomsFrom_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-        
-           UpdateContent();
-                    
 
-      //      MessageBox.Show(CurrentRoom.Name,CurrentRoom.ID.ToString());
+            UpdateContent();
+        }
 
+        private void ButtonAddRoom_Click(object sender, RoutedEventArgs e) {
+
+            if (TextBoxAddRoom.Text != string.Empty) {
+                Rooms tmp = new Rooms();
+                tmp.Name = TextBoxAddRoom.Text;
+                db.ChatRooms.Add(tmp);
+                db.SaveChanges();
+                UpdateContent();
+            }
+            else {
+                this.ShowMessageAsync("Error", "Length out of range");
+            }
+            
+        }
+
+        private void ButtonRemoveSelectedRoom_Click(object sender, RoutedEventArgs e) {
+
+            try {
+                foreach (Message item in db.Messages) {
+                    if (item.Room == RoomsFromRootControls.SelectedItem) {
+                        db.Messages.Remove(item);
+                    }
+                }
+
+                db.ChatRooms.Remove(RoomsFromRootControls.SelectedItem as Rooms);
+
+                db.SaveChanges();
+            }
+            catch (Exception ex) {
+                this.ShowMessageAsync("Error", ex.Message);
+            }
+            finally {
+                UpdateContent();
+            }
+
+        }
+
+        private void MenuRoot_Click(object sender, RoutedEventArgs e) {
+            FlyOutRoot.IsOpen = true;
         }
     }
 }

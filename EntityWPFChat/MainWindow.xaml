@@ -54,12 +54,13 @@
             <MenuItem Name="MenuRegistr" Click="MenuRegistr_Click" Header="Sign in"></MenuItem>
             <MenuItem Name="MenuRemove" Click="MenuRemove_Click" Header="Delete account"></MenuItem>
             <MenuItem Name="MenuSettings" Click="MenuSettings_Click" Header="Settings"></MenuItem>
+            <MenuItem Name="MenuRoot" Click="MenuRoot_Click" Header="Root controls"></MenuItem>
         </Menu>
 
 
 
         <!--<Label BorderBrush="Snow" BorderThickness="1" Grid.Row="1">Select User:</Label>-->
-        <ListBox Opacity="0.8" SelectionChanged="UsersFrom_SelectionChanged" Background="Transparent" Padding="10" Name="UsersFrom" Grid.Row="1" Grid.RowSpan="2">
+        <ListBox Opacity="0.8" SelectionChanged="UsersFrom_SelectionChanged" Background="Transparent" Padding="5" Name="UsersFrom" Grid.Row="1" Grid.RowSpan="2">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <!--<TextBlock Text="{Binding Name}"></TextBlock>-->
@@ -72,10 +73,10 @@
 
         </ListBox>
 
-        <ListBox SelectedIndex="0" VerticalAlignment="Bottom" Opacity="0.8" SelectionChanged="RoomsFrom_SelectionChanged" Background="Transparent" Padding="10" Name="RoomsFrom" Grid.Row="3" Grid.RowSpan="1">
+        <ListBox SelectedIndex="0" VerticalAlignment="Bottom" Opacity="0.8" SelectionChanged="RoomsFrom_SelectionChanged" Background="Transparent" Padding="5" Name="RoomsFrom" Grid.Row="3" Grid.RowSpan="1">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Controls:Badged Name="BadgedMessageCounter" HorizontalAlignment="Center" Width="140" Margin="-1,0,0,0"  Badge="{Binding Path=Messages.Count}" BadgePlacementMode="Right">
+                    <Controls:Badged Name="BadgedMessageCounter" HorizontalAlignment="Center" Width="140" Margin="-10,0,0,0"  Badge="{Binding Path=Messages.Count}" BadgePlacementMode="Right">
                         <TextBlock Opacity="0.8" Text="{Binding Name}"></TextBlock>
                     </Controls:Badged>
                 </DataTemplate>
@@ -149,17 +150,6 @@
 
         <!--Width="{Binding ElementName=FatherWin, Path=Width}" Height="{Binding ElementName=FatherWin, Path=Height}"-->
 
-        <Controls:Flyout Name="FlyOutRemove" MouseLeave="FlyOutStyle_MouseLeave" Header="Delete account" Grid.Row="0" Grid.Column="0" Position="Left" Width="220" Grid.RowSpan="6" Grid.ColumnSpan="3">
-            <StackPanel>
-
-                <Label FontSize="9" Margin="0,-25,60,5" HorizontalAlignment="Right">and cleanup usage data</Label>
-                <Label Name="LabelOnDeleteUserName" FontSize="20" Content="UserName" HorizontalAlignment="Center"></Label>
-
-                <PasswordBox Name="TextBoxConfirmPass" Margin="10,0,10,5" Controls:TextBoxHelper.Watermark="Confirm password" Controls:TextBoxHelper.ClearTextButton="True"></PasswordBox>
-                <Button Height="30" Content="Remove" Name="ButtonUserRemove" Click="ButtonUserRemove_Click" Margin="10,5,10,5" />
-
-            </StackPanel>
-        </Controls:Flyout>
         <Controls:Flyout CloseButtonVisibility="Collapsed" Name="FlyOutAttach" Grid.Row="0" Grid.Column="0" Position="Bottom" Height="100" Grid.RowSpan="6" Grid.ColumnSpan="6">
             <Grid>
                 <Grid.RowDefinitions>
@@ -274,9 +264,42 @@
             </Grid>
                 
         </Controls:Flyout>
+        <Controls:Flyout Name="FlyOutRemove" MouseLeave="FlyOutStyle_MouseLeave" Header="Delete account" Grid.Row="0" Grid.Column="0" Position="Left" Width="220" Grid.RowSpan="6" Grid.ColumnSpan="3">
+            <StackPanel>
 
-        
-        
+                <Label FontSize="9" Margin="0,-25,60,5" HorizontalAlignment="Right">and cleanup usage data</Label>
+                <Label Name="LabelOnDeleteUserName" FontSize="20" Content="UserName" HorizontalAlignment="Center"></Label>
+
+                <PasswordBox Name="TextBoxConfirmPass" Margin="10,0,10,5" Controls:TextBoxHelper.Watermark="Confirm password" Controls:TextBoxHelper.ClearTextButton="True"></PasswordBox>
+                <Button Height="30" Content="Remove" Name="ButtonUserRemove" Click="ButtonUserRemove_Click" Margin="10,5,10,5" />
+
+            </StackPanel>
+        </Controls:Flyout>
+        <Controls:Flyout Name="FlyOutRoot" MouseLeave="FlyOutStyle_MouseLeave" Grid.Row="0" Grid.Column="0" Position="Left" Width="220" Grid.RowSpan="6" Grid.ColumnSpan="3">
+            <StackPanel>
+
+                <Label FontSize="22" Margin="5">Rooms root controls</Label>
+                <TextBox Name="TextBoxAddRoom" TextChanged="TextBoxLinkToBack_TextChanged"  Margin="5" FontSize="15" Controls:TextBoxHelper.Watermark="Room name" Controls:TextBoxHelper.ClearTextButton="True"></TextBox>
+                <Button Margin="5" Name="ButtonAddRoom" Click="ButtonAddRoom_Click">Add Room</Button>
+
+                <ListBox MaxHeight="300" Margin="5" SelectedIndex="0" VerticalAlignment="Stretch" Opacity="0.8" SelectionChanged="RoomsFrom_SelectionChanged" Background="Transparent" Padding="5" Name="RoomsFromRootControls">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Controls:Badged Name="BadgedMessageCounter" HorizontalAlignment="Center" Width="140" Margin="-10,0,0,0"  Badge="{Binding Path=Messages.Count}" BadgePlacementMode="Right">
+                                <TextBlock Text="{Binding Name}"></TextBlock>
+                            </Controls:Badged>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+
+                </ListBox>
+
+                <Button Margin="5" Name="ButtonRemoveSelectedRoom" Click="ButtonRemoveSelectedRoom_Click">Remove Selected Room</Button>
+
+
+            </StackPanel>
+        </Controls:Flyout>
+
+
         <Controls:ProgressRing Name="ProgressRingLoading" IsActive="False" Grid.RowSpan="6" Grid.ColumnSpan="6"/>
 
         <!--<Grid.Background>
