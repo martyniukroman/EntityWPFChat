@@ -58,9 +58,8 @@ namespace EntityWPFChat {
 
         public string link;
 
-        Person CurrentLoginedUser;
-        Message message = new Message();
-        Rooms CurrentRoom;
+        public Person CurrentLoginedUser;
+        public Message message = new Message();
 
         public static string[] accentsArr = new string[] { "Red", "Green", "Blue", "Purple", "Orange", "Lime", "Emerald", "Teal", "Cyan", "Cobalt", "Indigo", "Violet", "Pink", "Magenta", "Crimson", "Amber", "Yellow", "Brown", "Olive", "Steel", "Mauve", "Taupe", "Sienna" };
         public static string[] colors = new string[] { "Green", "Purple", "Orange", "Brown", "Olive", "Black", "Gray", "Tomato", "Coral", "Navy", "Orchid", "Plum", "Peru", "Silver", "Tan", "Teal", };
@@ -74,19 +73,27 @@ namespace EntityWPFChat {
         public void UpdateContent() {
 
             ProgressRingLoading.IsActive = true;
+            //        MessageBox.Show((RoomsFrom.SelectedItem as Rooms).Name, "within update");
             //   this.Title = CurrentLoginedUser.Name;
-            // System.Threading.Thread.Sleep(1000);
-
-            
+            // System.Threading.Thread.Sleep(1000);            
 
             try {
+
+                ListViewMessages.Items.Clear();
 
                 //ListViewMessages.ItemsSource = db.Messages.ToList();
                 RoomsFrom.ItemsSource = db.ChatRooms.ToList();
                 UsersFrom.ItemsSource = db.People.ToList();
 
+
+                //foreach (Message item in db.Messages) {
+                //    if (item.Room.ID == (RoomsFrom.SelectedItem as Rooms).ID) {
+                //        ListViewMessages.Items.Add(item);
+                //    }
+                //}
+
                 foreach (Message item in db.Messages) {
-                    if (item.Room.ID == CurrentRoom.ID) {
+                    if (item.Room == RoomsFrom.SelectedItem) {
                         ListViewMessages.Items.Add(item);
                     }
                 }
@@ -129,13 +136,12 @@ namespace EntityWPFChat {
 
             DataGridCommandsInfo.ItemsSource = colors;
 
-
+            RoomsFrom.SelectedIndex = 0;
 
             SetBackground(@"https://www.pixel-creation.com/wp-content/uploads/dragon-full-hd-wallpaper-and-background-image-1920x1080-id441572-1.jpg");
 
             //System.Threading.Thread.Sleep(1000);
             CurrentLoginedUser = null;
-            CurrentRoom = null;
             UpdateContent();
         }
 
@@ -159,10 +165,12 @@ namespace EntityWPFChat {
         }
 
         private void Button_Click(object sender, RoutedEventArgs e) {
+        //   MessageBox.Show(CurrentRoom.Name, CurrentRoom.ID.ToString());
             SendMessage();
         }
 
         private void SendMessage() {
+
 
             Color tmpcolor = ColorPicker.Color;
 
@@ -183,6 +191,11 @@ namespace EntityWPFChat {
             message.dateTime = DateTime.Now;
             message.PictureLink = link;
             message.Color = ColorPicker.Color.ToString();
+
+            MessageBox.Show((RoomsFrom.SelectedItem as Rooms).Name, "within sendmessage");
+            message.Room = RoomsFrom.SelectedItem as Rooms;
+
+           
 
             CurrentLoginedUser.MessageCount++;
 
@@ -557,13 +570,12 @@ namespace EntityWPFChat {
         }
 
         private void RoomsFrom_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            foreach (Rooms item in db.ChatRooms) {
-                if ((RoomsFrom.SelectedItem as Rooms).ID == item.ID) {
-                    CurrentRoom = item;
-                    ListViewMessages.Items.Clear();
-                    UpdateContent();
-                }
-            }
+        
+           UpdateContent();
+                    
+
+      //      MessageBox.Show(CurrentRoom.Name,CurrentRoom.ID.ToString());
+
         }
     }
 }

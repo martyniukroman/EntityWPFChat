@@ -131,6 +131,10 @@
     <Compile Include="Migrations\201808301155535_roomsfixes.Designer.cs">
       <DependentUpon>201808301155535_roomsfixes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809031409156_isRoot.cs" />
+    <Compile Include="Migrations\201809031409156_isRoot.Designer.cs">
+      <DependentUpon>201809031409156_isRoot.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelContext.cs" />
     <Compile Include="models\Message.cs" />
@@ -181,6 +185,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808301155535_roomsfixes.resx">
       <DependentUpon>201808301155535_roomsfixes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809031409156_isRoot.resx">
+      <DependentUpon>201809031409156_isRoot.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
